@@ -11,17 +11,17 @@ import darkStarsImage from "./assets/images/hero/dark/stars.png";
 
 export const IMAGES = {
   light: {
-    cloudBackImage: cloudBackImage,
-    cloudLeftImage: cloudLeftImage,
-    cloudMiddleImage: cloudMiddleImage,
-    cloudRightImage: cloudRightImage,
-    starsImage: starsImage,
+    cloudBack: cloudBackImage,
+    cloudLeft: cloudLeftImage,
+    cloudMiddle: cloudMiddleImage,
+    cloudRight: cloudRightImage,
+    stars: starsImage,
   },
   dark: {
-    cloudBackImage: darkCloudBackImage,
-    cloudLeftImage: darkCloudLeftImage,
-    cloudMiddleImage: darkCloudMiddleImage,
-    cloudRightImage: darkCloudRightImage,
-    starsImage: darkStarsImage,
+    cloudBack: darkCloudBackImage,
+    cloudLeft: darkCloudLeftImage,
+    cloudMiddle: darkCloudMiddleImage,
+    cloudRight: darkCloudRightImage,
+    stars: darkStarsImage,
   },
 };

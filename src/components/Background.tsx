@@ -5,6 +5,8 @@ import { IMAGES } from "../constants";
 import useMeasure from "react-use-measure";
 import styled from "styled-components";
 import { Theme } from "../types";
+import { useAppSelector } from "../hooks";
+import { selectTheme } from "../features/theme/themeSlice";
 
 const BackgroundWrapper = styled(animated.div)<{ theme?: Theme }>`
   width: 100%;
@@ -29,10 +31,8 @@ const Layer = styled(animated.div)<{
   transition: background 0.3s ease-in-out;
 `;
 
-type BackgroundProps = {
-  theme: Theme;
-};
-function Background({ theme = "light" }: BackgroundProps) {
+function Background() {
+  const theme = useAppSelector(selectTheme).currentTheme;
   const [ref, bounds] = useMeasure();
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
@@ -63,23 +63,11 @@ function Background({ theme = "light" }: BackgroundProps) {
       }}
       theme={theme}
     >
-      <Layer imgsrc={IMAGES[theme].starsImage} />
-      <Layer
-        style={{ ...parallaxLevel4 }}
-        imgsrc={IMAGES[theme].cloudBackImage}
-      />
-      <Layer
-        style={{ ...parallaxLevel3 }}
-        imgsrc={IMAGES[theme].cloudMiddleImage}
-      />
-      <Layer
-        style={{ ...parallaxLevel2 }}
-        imgsrc={IMAGES[theme].cloudRightImage}
-      />
-      <Layer
-        style={{ ...parallaxLevel1 }}
-        imgsrc={IMAGES[theme].cloudLeftImage}
-      />
+      <Layer imgsrc={IMAGES[theme].stars} />
+      <Layer style={{ ...parallaxLevel4 }} imgsrc={IMAGES[theme].cloudBack} />
+      <Layer style={{ ...parallaxLevel3 }} imgsrc={IMAGES[theme].cloudMiddle} />
+      <Layer style={{ ...parallaxLevel2 }} imgsrc={IMAGES[theme].cloudRight} />
+      <Layer style={{ ...parallaxLevel1 }} imgsrc={IMAGES[theme].cloudLeft} />
     </BackgroundWrapper>
   );
 }

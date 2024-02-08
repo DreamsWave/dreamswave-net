@@ -3,7 +3,7 @@ import Background from "./Background";
 import { useState } from "react";
 import useMeasure from "react-use-measure";
 import styled from "styled-components";
-import { Theme } from "../types";
+import ThemeSwitcher from "../features/theme/ThemeSwitcher";
 
 const AppWrapper = styled.main`
   min-height: 100vh;
@@ -27,7 +27,6 @@ function App() {
   const [ref, bounds] = useMeasure();
   const [, setMouseX] = useState(0);
   const [, setMouseY] = useState(0);
-  const [theme, setTheme] = useState<Theme>("light");
   return (
     <>
       <AppWrapper
@@ -37,21 +36,9 @@ function App() {
           setMouseY(e.clientY - bounds.y - bounds.height / 2);
         }}
       >
-        <button
-          style={{
-            position: "absolute",
-            right: 10,
-            top: 10,
-            zIndex: 15,
-            color: "#333",
-            background: "#fff",
-          }}
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        >
-          change theme
-        </button>
+        <ThemeSwitcher />
         <Author>dreamed by DreamsWave © 2024</Author>
-        <Background theme={theme} />
+        <Background />
       </AppWrapper>
     </>
   );
