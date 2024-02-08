@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
-import { IMAGES } from "../constants";
 
 import useMeasure from "react-use-measure";
 import styled from "styled-components";
-import { Theme } from "../types";
 import { useAppSelector } from "../hooks";
 import { selectTheme } from "../features/theme/themeSlice";
 
-const BackgroundWrapper = styled(animated.div)<{ theme?: Theme }>`
+const BackgroundWrapper = styled(animated.div)<{ isdarktheme: boolean }>`
   width: 100%;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: ${({ theme }) => (theme === "light" ? "#dfeded" : "#2e3e58")};
+  background: ${({ isdarktheme }) => (isdarktheme ? "#2e3e58" : "#dfeded")};
   transition: background 0.3s ease-in-out;
 `;
 
@@ -32,7 +30,7 @@ const Layer = styled(animated.div)<{
 `;
 
 function Background() {
-  const theme = useAppSelector(selectTheme).currentTheme;
+  const theme = useAppSelector(selectTheme);
   const [ref, bounds] = useMeasure();
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
@@ -61,13 +59,13 @@ function Background() {
         setMouseX(e.clientX - bounds.x - bounds.width / 2);
         setMouseY(e.clientY - bounds.y - bounds.height / 2);
       }}
-      theme={theme}
+      isdarktheme={theme.isDarkTheme}
     >
-      <Layer imgsrc={IMAGES[theme].stars} />
-      <Layer style={{ ...parallaxLevel4 }} imgsrc={IMAGES[theme].cloudBack} />
-      <Layer style={{ ...parallaxLevel3 }} imgsrc={IMAGES[theme].cloudMiddle} />
-      <Layer style={{ ...parallaxLevel2 }} imgsrc={IMAGES[theme].cloudRight} />
-      <Layer style={{ ...parallaxLevel1 }} imgsrc={IMAGES[theme].cloudLeft} />
+      <Layer imgsrc={theme.images.stars} />
+      <Layer style={{ ...parallaxLevel4 }} imgsrc={theme.images.cloudBack} />
+      <Layer style={{ ...parallaxLevel3 }} imgsrc={theme.images.cloudMiddle} />
+      <Layer style={{ ...parallaxLevel2 }} imgsrc={theme.images.cloudRight} />
+      <Layer style={{ ...parallaxLevel1 }} imgsrc={theme.images.cloudLeft} />
     </BackgroundWrapper>
   );
 }
