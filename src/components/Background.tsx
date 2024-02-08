@@ -1,20 +1,12 @@
 import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
+import { IMAGES } from "../constants";
 
-import cloudBackImage from "../assets/images/hero/cloud-back.png";
-import cloudLeftImage from "../assets/images/hero/cloud-left.png";
-import cloudMiddleImage from "../assets/images/hero/cloud-middle.png";
-import cloudRightImage from "../assets/images/hero/cloud-right.png";
-import starsImage from "../assets/images/hero/stars.png";
-import darkCloudBackImage from "../assets/images/hero/dark/cloud-back.png";
-import darkCloudLeftImage from "../assets/images/hero/dark/cloud-left.png";
-import darkCloudMiddleImage from "../assets/images/hero/dark/cloud-middle.png";
-import darkCloudRightImage from "../assets/images/hero/dark/cloud-right.png";
-import darkStarsImage from "../assets/images/hero/dark/stars.png";
 import useMeasure from "react-use-measure";
 import styled from "styled-components";
+import { Theme } from "../types";
 
-const BackgroundWrapper = styled(animated.div)<{ theme: "light" | "dark" }>`
+const BackgroundWrapper = styled(animated.div)<{ theme?: Theme }>`
   width: 100%;
   height: 100vh;
   position: relative;
@@ -24,21 +16,21 @@ const BackgroundWrapper = styled(animated.div)<{ theme: "light" | "dark" }>`
 `;
 
 const Layer = styled(animated.div)<{
-  imgSrc: string;
+  imgsrc: string;
 }>`
   height: calc(100% + 60px);
   width: calc(100% + 60px);
   top: -30px;
   left: -30px;
   position: absolute;
-  background-image: url(${({ imgSrc }) => imgSrc});
+  background-image: url(${({ imgsrc }) => imgsrc});
   background-position: center;
   background-size: cover;
   transition: background 0.3s ease-in-out;
 `;
 
 type BackgroundProps = {
-  theme?: "light" | "dark";
+  theme: Theme;
 };
 function Background({ theme = "light" }: BackgroundProps) {
   const [ref, bounds] = useMeasure();
@@ -71,24 +63,23 @@ function Background({ theme = "light" }: BackgroundProps) {
       }}
       theme={theme}
     >
-      {theme === "light" && (
-        <>
-          <Layer imgSrc={starsImage} />
-          <Layer style={{ ...parallaxLevel4 }} imgSrc={cloudBackImage} />
-          <Layer style={{ ...parallaxLevel3 }} imgSrc={cloudMiddleImage} />
-          <Layer style={{ ...parallaxLevel2 }} imgSrc={cloudRightImage} />
-          <Layer style={{ ...parallaxLevel1 }} imgSrc={cloudLeftImage} />
-        </>
-      )}
-      {theme === "dark" && (
-        <>
-          <Layer imgSrc={darkStarsImage} />
-          <Layer style={{ ...parallaxLevel4 }} imgSrc={darkCloudBackImage} />
-          <Layer style={{ ...parallaxLevel3 }} imgSrc={darkCloudMiddleImage} />
-          <Layer style={{ ...parallaxLevel2 }} imgSrc={darkCloudRightImage} />
-          <Layer style={{ ...parallaxLevel1 }} imgSrc={darkCloudLeftImage} />
-        </>
-      )}
+      <Layer imgsrc={IMAGES[theme].starsImage} />
+      <Layer
+        style={{ ...parallaxLevel4 }}
+        imgsrc={IMAGES[theme].cloudBackImage}
+      />
+      <Layer
+        style={{ ...parallaxLevel3 }}
+        imgsrc={IMAGES[theme].cloudMiddleImage}
+      />
+      <Layer
+        style={{ ...parallaxLevel2 }}
+        imgsrc={IMAGES[theme].cloudRightImage}
+      />
+      <Layer
+        style={{ ...parallaxLevel1 }}
+        imgsrc={IMAGES[theme].cloudLeftImage}
+      />
     </BackgroundWrapper>
   );
 }
