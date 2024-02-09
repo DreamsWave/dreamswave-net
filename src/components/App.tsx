@@ -4,13 +4,19 @@ import { useState } from "react";
 import useMeasure from "react-use-measure";
 import styled from "styled-components";
 import ThemeSwitcher from "../features/theme/ThemeSwitcher";
+import Socials from "./Socials";
 
-const AppWrapper = styled.main`
+const AppWrapper = styled.div`
   min-height: 100vh;
   width: 100vw;
   position: relative;
   display: flex;
   flex-direction: column;
+`;
+
+const Content = styled.main`
+  padding-top: 100px;
+  z-index: 20;
 `;
 
 const Author = styled.span`
@@ -25,8 +31,8 @@ const Author = styled.span`
 
 function App() {
   const [ref, bounds] = useMeasure();
-  const [, setMouseX] = useState(0);
-  const [, setMouseY] = useState(0);
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
   return (
     <>
       <AppWrapper
@@ -36,9 +42,12 @@ function App() {
           setMouseY(e.clientY - bounds.y - bounds.height / 2);
         }}
       >
+        <Content>
+          <Socials />
+        </Content>
         <ThemeSwitcher />
         <Author>dreamed by DreamsWave © 2024</Author>
-        <Background />
+        <Background mouseX={mouseX} mouseY={mouseY} />
       </AppWrapper>
     </>
   );

@@ -1,7 +1,4 @@
-import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
-
-import useMeasure from "react-use-measure";
 import styled from "styled-components";
 import { useAppSelector } from "../hooks";
 import { selectTheme } from "../features/theme/themeSlice";
@@ -9,7 +6,7 @@ import { selectTheme } from "../features/theme/themeSlice";
 const BackgroundWrapper = styled(animated.div)<{ isdarktheme: boolean }>`
   width: 100%;
   height: 100vh;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   background: ${({ isdarktheme }) => (isdarktheme ? "#2e3e58" : "#dfeded")};
   transition: background 0.3s ease-in-out;
@@ -29,11 +26,12 @@ const Layer = styled(animated.div)<{
   transition: background 0.3s ease-in-out;
 `;
 
-function Background() {
+type BackgroundProps = {
+  mouseX: number;
+  mouseY: number;
+};
+function Background({ mouseX, mouseY }: BackgroundProps) {
   const theme = useAppSelector(selectTheme);
-  const [ref, bounds] = useMeasure();
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
 
   const parallaxLevel1 = useSpring({
     x: -(mouseX / 80),
@@ -53,14 +51,7 @@ function Background() {
   });
 
   return (
-    <BackgroundWrapper
-      ref={ref}
-      onMouseMove={(e) => {
-        setMouseX(e.clientX - bounds.x - bounds.width / 2);
-        setMouseY(e.clientY - bounds.y - bounds.height / 2);
-      }}
-      isdarktheme={theme.isDarkTheme}
-    >
+    <BackgroundWrapper isdarktheme={theme.isDarkTheme}>
       <Layer imgsrc={theme.images.stars} />
       <Layer style={{ ...parallaxLevel4 }} imgsrc={theme.images.cloudBack} />
       <Layer style={{ ...parallaxLevel3 }} imgsrc={theme.images.cloudMiddle} />

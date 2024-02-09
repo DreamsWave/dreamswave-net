@@ -15,9 +15,10 @@ const ThemeSwitcherWrapper = styled.button`
   position: absolute;
   right: 10px;
   top: 10px;
-  z-index: 15;
+  z-index: 30;
   color: #333;
   background: #fff;
+  cursor: pointer;
 `;
 
 function ThemeSwitcher() {
