@@ -14,3 +14,5 @@ export type ThemeImages = {
 export type ThemesImages = {
   [theme in Theme]: ThemeImages;
 };
+
+export type Icons = "telegram" | "github" | "email" | "twitter";

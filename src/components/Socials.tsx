@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import PixelCard from "./PixelCard";
+import SocialLink from "./SocialLink";
 
 const pixelSize = 5;
 
@@ -14,82 +15,70 @@ const SocialsWrapper = styled.div`
   position: relative;
 `;
 
-const SocialsList = styled.ul`
-  height: 100%;
-  width: 100%;
-  padding: 0 ${pixelSize * 6}px;
-  margin: 0;
-  list-style: none;
-`;
-
-const SocialsListItem = styled.li`
-  border-bottom: ${pixelSize}px solid rgba(199, 224, 229, 1);
-  &:last-child {
-    border-bottom: none;
-  }
-`;
-
-const SocialsLink = styled.a`
-  color: #445a73;
-  display: inline-flex;
-  width: 100%;
-  padding: ${pixelSize * 3}px ${pixelSize * 2}px;
-  font-size: 1.5em;
-  justify-content: center;
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: #94b5bc;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 ${pixelSize}px #445a73;
-  }
-`;
-
 function Socials() {
   return (
     <SocialsWrapper>
       <PixelCard>
-        <SocialsList>
-          <SocialsListItem>
-            <SocialsLink
-              href="https://twitter.com/dreamswave_tw"
-              target="_blank"
-              aria-label="Twitter account"
-            >
-              Twitter
-            </SocialsLink>
-          </SocialsListItem>
-          <SocialsListItem>
-            <SocialsLink
-              href="https://github.com/DreamsWave"
-              target="_blank"
-              aria-label="Github account"
-            >
-              Github
-            </SocialsLink>
-          </SocialsListItem>
-          <SocialsListItem>
-            <SocialsLink
-              href="https://t.me/dreamswave_tg"
-              target="_blank"
-              aria-label="Telegram account"
-            >
-              Telegram
-            </SocialsLink>
-          </SocialsListItem>
-          <SocialsListItem>
-            <SocialsLink
-              href="mailto:idreamzzer@gmail.com"
-              target="_blank"
-              aria-label="Email address"
-            >
-              Email
-            </SocialsLink>
-          </SocialsListItem>
-        </SocialsList>
+        <SocialLink
+          href="https://twitter.com/dreamswave_tw"
+          ariaLabel="Twitter account"
+          icon="twitter"
+          text="Twitter"
+        />
+        <SocialLink
+          href="https://www.instagram.com/dreamswave_ig/"
+          ariaLabel="Instagram account"
+          icon="instagram"
+          text="Instagram"
+        />
+        <SocialLink
+          href="https://www.artstation.com/dreamswave"
+          ariaLabel="ArtStation account"
+          icon="artstation"
+          text="ArtStation"
+        />
+        <SocialLink
+          href="https://github.com/DreamsWave"
+          ariaLabel="GitHub account"
+          icon="github"
+          text="GitHub"
+        />
+        <SocialLink
+          href="https://t.me/dreamswave_tg"
+          ariaLabel="Telegram account"
+          icon="telegram"
+          text="Telegram"
+        />
+        <SocialLink
+          href="mailto:idreamzzer@gmail.com"
+          ariaLabel="Email address"
+          icon="email"
+          text="Email"
+        />
+        <SocialLink
+          href="https://www.twitch.tv/dreamswave"
+          ariaLabel="Twitch account"
+          icon="twitch"
+          text="Twitch"
+        />
+        <SocialLink
+          href="https://discordapp.com/users/272297862400966656"
+          ariaLabel="Discord account"
+          icon="discord"
+          text="Discord"
+        />
+        <SocialLink
+          href="https://open.spotify.com/user/bd03luynomqvrick2r7y1f7hf?si=d17e4f01858b465f"
+          ariaLabel="Spotify account"
+          icon="spotify"
+          text="Spotify"
+        />
+        <SocialLink
+          href="https://vk.com/dreamswave"
+          ariaLabel="VKontakte account"
+          icon="vk"
+          text="VK"
+        />
       </PixelCard>
     </SocialsWrapper>
   );
