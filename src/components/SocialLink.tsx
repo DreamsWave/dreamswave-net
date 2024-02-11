@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Icon, { IconType } from "./Icon";
+import Icon from "./Icon";
+import { IconType } from "../types";
 
 const pixelSize = 5;
 
@@ -22,6 +23,11 @@ const SocialLinkWrapper = styled.a`
   }
 `;
 
+const StyledIcon = styled(Icon)`
+  margin-left: ${pixelSize * 3}px;
+  margin-right: ${pixelSize * 3}px;
+`;
+
 type SocialLinkProps = {
   href: string;
   ariaLabel: string;
@@ -31,7 +37,7 @@ type SocialLinkProps = {
 function SocialLink({ href, ariaLabel, icon, text }: SocialLinkProps) {
   return (
     <SocialLinkWrapper href={href} aria-label={ariaLabel} target="_blank">
-      <Icon type={icon} />
+      <StyledIcon type={icon} />
       {text}
     </SocialLinkWrapper>
   );

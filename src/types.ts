@@ -15,4 +15,18 @@ export type ThemesImages = {
   [theme in Theme]: ThemeImages;
 };
 
-export type Icons = "telegram" | "github" | "email" | "twitter";
+export type IconType =
+  | "artstation"
+  | "discord"
+  | "email"
+  | "github"
+  | "instagram"
+  | "spotify"
+  | "telegram"
+  | "twitch"
+  | "twitter"
+  | "vk";
+
+export type IconPaths = {
+  [key in IconType]: string[];
+};
