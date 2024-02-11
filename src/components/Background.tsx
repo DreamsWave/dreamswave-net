@@ -3,12 +3,15 @@ import styled from "styled-components";
 import { useAppSelector } from "../hooks";
 import { selectTheme } from "../features/theme/themeSlice";
 
-const BackgroundWrapper = styled(animated.div)<{ isdarktheme: boolean }>`
+const BackgroundWrapper = styled(animated.div)<{ isdarktheme: string }>`
+  --background-color: ${({ isdarktheme }) =>
+    isdarktheme === "true" ? "#2e3e58" : "#dfeded"};
+
   width: 100%;
   height: 100vh;
   position: fixed;
   overflow: hidden;
-  background: ${({ isdarktheme }) => (isdarktheme ? "#2e3e58" : "#dfeded")};
+  background: var(--background-color);
   transition: background 0.3s ease-in-out;
 `;
 
@@ -51,7 +54,7 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
   });
 
   return (
-    <BackgroundWrapper isdarktheme={theme.isDarkTheme}>
+    <BackgroundWrapper isdarktheme={theme.isDarkTheme.toString()}>
       <Layer imgsrc={theme.images.stars} />
       <Layer style={{ ...parallaxLevel4 }} imgsrc={theme.images.cloudBack} />
       <Layer style={{ ...parallaxLevel3 }} imgsrc={theme.images.cloudMiddle} />

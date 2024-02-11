@@ -9,7 +9,7 @@ import {
 } from "./themeSlice";
 import { IMAGES } from "../../constants";
 import { ThemeImages } from "../../types";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 const ThemeSwitcherWrapper = styled.button`
   position: absolute;
@@ -25,35 +25,38 @@ function ThemeSwitcher() {
   const theme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
 
-  const loadThemeImages = async (isDarkTheme: boolean) => {
-    const theme = isDarkTheme ? "dark" : "light";
-    const imageUrls = Object.values(IMAGES[theme]);
-    const loadedImages: { [key: string]: string } = {};
-    await Promise.all(
-      imageUrls.map(
-        (url) =>
-          new Promise((resolve, reject) => {
-            const imageLoader = new Image();
-            imageLoader.src = url;
-            imageLoader.onload = () => {
-              loadedImages[url] = imageLoader.src;
-              resolve(null);
-            };
-            imageLoader.onerror = reject;
-          })
-      )
-    );
-    const images: ThemeImages = {
-      cloudBack: loadedImages[IMAGES[theme].cloudBack],
-      cloudLeft: loadedImages[IMAGES[theme].cloudLeft],
-      cloudMiddle: loadedImages[IMAGES[theme].cloudMiddle],
-      cloudRight: loadedImages[IMAGES[theme].cloudRight],
-      stars: loadedImages[IMAGES[theme].stars],
-    };
-    dispatch(setImages(images));
+  const loadThemeImages = useCallback(
+    async (isDarkTheme: boolean) => {
+      const theme = isDarkTheme ? "dark" : "light";
+      const imageUrls = Object.values(IMAGES[theme]);
+      const loadedImages: { [key: string]: string } = {};
+      await Promise.all(
+        imageUrls.map(
+          (url) =>
+            new Promise((resolve, reject) => {
+              const imageLoader = new Image();
+              imageLoader.src = url;
+              imageLoader.onload = () => {
+                loadedImages[url] = imageLoader.src;
+                resolve(null);
+              };
+              imageLoader.onerror = reject;
+            })
+        )
+      );
+      const images: ThemeImages = {
+        cloudBack: loadedImages[IMAGES[theme].cloudBack],
+        cloudLeft: loadedImages[IMAGES[theme].cloudLeft],
+        cloudMiddle: loadedImages[IMAGES[theme].cloudMiddle],
+        cloudRight: loadedImages[IMAGES[theme].cloudRight],
+        stars: loadedImages[IMAGES[theme].stars],
+      };
+      dispatch(setImages(images));
 
-    return loadedImages;
-  };
+      return loadedImages;
+    },
+    [dispatch]
+  );
 
   const switchTheme = async () => {
     dispatch(startLoading());
@@ -65,7 +68,7 @@ function ThemeSwitcher() {
   useEffect(() => {
     loadThemeImages(theme.isDarkTheme);
     dispatch(finishLoading());
-  }, []);
+  }, [dispatch, loadThemeImages, theme.isDarkTheme]);
 
   return (
     <ThemeSwitcherWrapper onClick={() => switchTheme()}>

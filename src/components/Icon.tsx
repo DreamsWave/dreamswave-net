@@ -1,7 +1,5 @@
 import { IconType } from "../types";
-import { ICONS_PATHS } from "../constants";
-
-const pixelSize = 5;
+import * as SVGIcons from "./Icons";
 
 type IconProps = {
   type: IconType;
@@ -9,23 +7,28 @@ type IconProps = {
   className?: string;
 };
 const Icon = ({ type, color = "#94b5bc", className }: IconProps) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 10}
-      baseProfile="tiny"
-      version="1.2"
-      viewBox="0 0 10 10"
-      className={className}
-    >
-      <g fill={color}>
-        {ICONS_PATHS[type].map((path, index) => (
-          <path key={index} d={path} />
-        ))}
-      </g>
-    </svg>
-  );
+  switch (type) {
+    case "artstation":
+      return <SVGIcons.ArtStationSVG color={color} className={className} />;
+    case "discord":
+      return <SVGIcons.DiscordSVG color={color} className={className} />;
+    case "email":
+      return <SVGIcons.EmailSVG color={color} className={className} />;
+    case "github":
+      return <SVGIcons.GithubSVG color={color} className={className} />;
+    case "instagram":
+      return <SVGIcons.InstagramSVG color={color} className={className} />;
+    case "spotify":
+      return <SVGIcons.SpotifySVG color={color} className={className} />;
+    case "telegram":
+      return <SVGIcons.TelegramSVG color={color} className={className} />;
+    case "twitch":
+      return <SVGIcons.TwitchSVG color={color} className={className} />;
+    case "twitter":
+      return <SVGIcons.TwitterSVG color={color} className={className} />;
+    case "vk":
+      return <SVGIcons.VKSVG color={color} className={className} />;
+  }
 };
 
 export default Icon;

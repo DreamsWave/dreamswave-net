@@ -26,7 +26,3 @@ export type IconType =
   | "twitch"
   | "twitter"
   | "vk";
-
-export type IconPaths = {
-  [key in IconType]: string[];
-};

@@ -49,16 +49,16 @@ const RightBorder = styled(Border)`
 
 const PixelCardWrapper = styled.div`
   position: relative;
-  width: 100%;
+  // width: 100%;
 `;
 
-const PixelCardContent = styled.div`
+export const PixelCardContent = styled.div`
   background: linear-gradient(
     180deg,
     rgba(199, 224, 229, 0.5) 0%,
     rgba(215, 232, 234, 0.5) 100%
   );
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -66,14 +66,24 @@ const PixelCardContent = styled.div`
   position: relative;
 `;
 
-function PixelCard({ children }: { children: React.ReactNode }) {
+function PixelCard({
+  children,
+  className,
+  contentClassName,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  contentClassName?: string;
+}) {
   return (
-    <PixelCardWrapper>
+    <PixelCardWrapper className={className}>
       <TopBorder />
       <BottomBorder />
       <LeftBorder />
       <RightBorder />
-      <PixelCardContent>{children}</PixelCardContent>
+      <PixelCardContent className={contentClassName}>
+        {children}
+      </PixelCardContent>
     </PixelCardWrapper>
   );
 }
