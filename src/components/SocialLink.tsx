@@ -1,14 +1,13 @@
 import styled from "styled-components";
 import Icon from "./Icon";
 import { IconType } from "../types";
-
-const pixelSize = 5;
+import { PIXEL_SIZE } from "../constants";
 
 const SocialLinkWrapper = styled.a`
   color: #445a73;
   display: inline-flex;
   width: 100%;
-  padding: ${pixelSize * 3}px ${pixelSize * 2}px;
+  padding: ${PIXEL_SIZE * 3}px ${PIXEL_SIZE * 2}px;
   font-size: 1.5em;
   justify-content: start;
   transition: color 0.2s ease-in-out;
@@ -19,13 +18,13 @@ const SocialLinkWrapper = styled.a`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 ${pixelSize}px #445a73;
+    box-shadow: 0 0 0 ${PIXEL_SIZE}px #445a73;
   }
 `;
 
 const StyledIcon = styled(Icon)`
-  margin-left: ${pixelSize * 3}px;
-  margin-right: ${pixelSize * 3}px;
+  margin-left: ${PIXEL_SIZE * 3}px;
+  margin-right: ${PIXEL_SIZE * 3}px;
 `;
 
 type SocialLinkProps = {

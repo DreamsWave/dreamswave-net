@@ -1,32 +1,40 @@
 import styled from "styled-components";
+import { PIXEL_SIZE } from "../constants";
 
-const pixelSize = 5;
-
-const Border = styled.div`
+export const PixelCardBorder = styled.div`
   position: absolute;
-  background-color: rgb(199, 224, 229);
-`;
-
-const TopBorder = styled(Border)`
-  width: calc(100% - ${pixelSize * 2}px);
-  height: ${pixelSize}px;
-  top: 0;
-  left: ${pixelSize}px;
   background: rgba(199, 224, 229, 1);
+  transition: background 0.3s linear;
 `;
 
-const BottomBorder = styled(Border)`
-  width: calc(100% - ${pixelSize * 2}px);
-  height: ${pixelSize}px;
+const TopBorder = styled(PixelCardBorder)`
+  width: calc(100% - ${PIXEL_SIZE * 2}px);
+  height: ${PIXEL_SIZE}px;
+  top: 0;
+  left: ${PIXEL_SIZE}px;
+  background: linear-gradient(
+    180deg,
+    rgba(199, 224, 229, 1) 0%,
+    rgba(199, 224, 229, 1) 100%
+  );
+`;
+
+const BottomBorder = styled(PixelCardBorder)`
+  width: calc(100% - ${PIXEL_SIZE * 2}px);
+  height: ${PIXEL_SIZE}px;
   bottom: 0;
-  left: ${pixelSize}px;
-  background: rgba(215, 232, 234, 1);
+  left: ${PIXEL_SIZE}px;
+  background: linear-gradient(
+    180deg,
+    rgba(215, 232, 234, 1) 0%,
+    rgba(215, 232, 234, 1) 100%
+  );
 `;
 
-const LeftBorder = styled(Border)`
-  width: ${pixelSize}px;
-  height: calc(100% - ${pixelSize * 2}px);
-  top: ${pixelSize}px;
+const LeftBorder = styled(PixelCardBorder)`
+  width: ${PIXEL_SIZE}px;
+  height: calc(100% - ${PIXEL_SIZE * 2}px);
+  top: ${PIXEL_SIZE}px;
   left: 0;
   background: linear-gradient(
     180deg,
@@ -35,10 +43,10 @@ const LeftBorder = styled(Border)`
   );
 `;
 
-const RightBorder = styled(Border)`
-  width: ${pixelSize}px;
-  height: calc(100% - ${pixelSize * 2}px);
-  top: ${pixelSize}px;
+const RightBorder = styled(PixelCardBorder)`
+  width: ${PIXEL_SIZE}px;
+  height: calc(100% - ${PIXEL_SIZE * 2}px);
+  top: ${PIXEL_SIZE}px;
   right: 0;
   background: linear-gradient(
     180deg,
@@ -49,7 +57,6 @@ const RightBorder = styled(Border)`
 
 const PixelCardWrapper = styled.div`
   position: relative;
-  // width: 100%;
 `;
 
 export const PixelCardContent = styled.div`
@@ -62,8 +69,9 @@ export const PixelCardContent = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin: ${pixelSize}px;
+  margin: ${PIXEL_SIZE}px;
   position: relative;
+  transition: all 0.3s;
 `;
 
 function PixelCard({

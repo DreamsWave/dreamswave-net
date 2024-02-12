@@ -1,15 +1,13 @@
 import styled from "styled-components";
 import Icon from "./Icon";
 import { IconType } from "../types";
-import PixelCard, { PixelCardContent } from "./PixelCard";
-
-const pixelSize = 5;
+import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
+import { PIXEL_SIZE } from "../constants";
 
 const SocialButtonLink = styled.a`
   color: #445a73;
   display: inline-flex;
-  width: ${pixelSize * 25}px;
-  padding: ${pixelSize * 3}px ${pixelSize * 2}px;
+  width: ${PIXEL_SIZE * 18}px;
   font-size: 1.2em;
   justify-content: center;
   align-items: center;
@@ -18,22 +16,41 @@ const SocialButtonLink = styled.a`
   font-family: "Montserrat Variable", sans-serif;
 
   &:hover {
-    color: #94b5bc;
+    color: #445a73;
+
+    ${PixelCardBorder} {
+      background: linear-gradient(
+        180deg,
+        rgba(199, 224, 229, 1) 0%,
+        rgba(199, 224, 229, 1) 100%
+      );
+      // background: rgba(199, 224, 229, 1);
+      // background: rgba(148, 181, 188, 1);
+    }
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 ${pixelSize}px #445a73;
+
+    ${PixelCardBorder} {
+      background: rgba(148, 181, 188, 1);
+    }
   }
 `;
 
 const IconWrapper = styled(PixelCard)`
   ${PixelCardContent} {
-    padding: ${pixelSize * 2}px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: ${PIXEL_SIZE * 16}px;
+    width: ${PIXEL_SIZE * 16}px;
   }
+`;
+
+const Text = styled.p`
+  padding: 0;
+  margin: 0;
 `;
 
 type SocialButtonProps = {
@@ -48,7 +65,7 @@ function SocialButton({ href, ariaLabel, icon, text }: SocialButtonProps) {
       <IconWrapper>
         <Icon type={icon} color="#94b5bc" />
       </IconWrapper>
-      {text}
+      <Text>{text}</Text>
     </SocialButtonLink>
   );
 }

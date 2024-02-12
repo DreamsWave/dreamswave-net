@@ -1,4 +1,4 @@
-const pixelSize = 5;
+import { PIXEL_SIZE } from "../constants";
 
 type SVGProps = {
   color?: string;
@@ -9,8 +9,8 @@ export const ArtStationSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 9}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 9}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 9"
@@ -29,8 +29,8 @@ export const DiscordSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 8}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 8}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 8"
@@ -47,8 +47,8 @@ export const EmailSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 8}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 8}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 8"
@@ -66,8 +66,8 @@ export const GithubSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 10}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 10}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 10"
@@ -84,8 +84,8 @@ export const InstagramSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 10}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 10}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 10"
@@ -102,8 +102,8 @@ export const SpotifySVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 10}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 10}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 10"
@@ -120,8 +120,8 @@ export const TelegramSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 10}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 10}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 10"
@@ -140,8 +140,8 @@ export const TwitchSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 10}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 10}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 10"
@@ -159,8 +159,8 @@ export const TwitterSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 8}
-      height={pixelSize * 8}
+      width={PIXEL_SIZE * 8}
+      height={PIXEL_SIZE * 8}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 8 8"
@@ -178,8 +178,8 @@ export const VKSVG = ({ color = "#94b5bc", className }: SVGProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={pixelSize * 10}
-      height={pixelSize * 8}
+      width={PIXEL_SIZE * 10}
+      height={PIXEL_SIZE * 8}
       baseProfile="tiny"
       version="1.2"
       viewBox="0 0 10 8"

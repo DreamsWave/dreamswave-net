@@ -1,5 +1,5 @@
 import { IconType } from "../types";
-import * as SVGIcons from "./Icons";
+import * as SVGIcons from "./SVGIcons";
 
 type IconProps = {
   type: IconType;
