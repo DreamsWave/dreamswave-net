@@ -24,8 +24,6 @@ const SocialButtonLink = styled.a`
         rgba(199, 224, 229, 1) 0%,
         rgba(199, 224, 229, 1) 100%
       );
-      // background: rgba(199, 224, 229, 1);
-      // background: rgba(148, 181, 188, 1);
     }
   }
 
