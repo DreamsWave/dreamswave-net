@@ -13,7 +13,6 @@ const SocialButtonLink = styled.a`
   align-items: center;
   flex-direction: column;
   transition: color 0.2s ease-in-out;
-  font-family: "Montserrat Variable", sans-serif;
 
   &:hover {
     color: #445a73;

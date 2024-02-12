@@ -10,7 +10,7 @@ const SocialsWrapper = styled.div`
   width: 100%;
   position: relative;
   align-content: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
   gap: ${PIXEL_SIZE * 8}px;
   padding: ${PIXEL_SIZE * 4}px;
 `;

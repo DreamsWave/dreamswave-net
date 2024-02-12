@@ -25,7 +25,6 @@ const Author = styled.span`
   bottom: 10px;
   z-index: 10;
   color: #fff;
-  font-family: "Montserrat Variable", sans-serif;
   font-size: 14px;
 `;
 
@@ -33,15 +32,17 @@ function App() {
   const [ref, bounds] = useMeasure();
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
+
+  const updateMouse = (e: React.MouseEvent) => {
+    if (!window.matchMedia("only screen and (max-width: 760px)").matches) {
+      setMouseX(e.clientX - bounds.x - bounds.width / 2);
+      setMouseY(e.clientY - bounds.y - bounds.height / 2);
+    }
+  };
+
   return (
     <>
-      <AppWrapper
-        ref={ref}
-        onMouseMove={(e) => {
-          setMouseX(e.clientX - bounds.x - bounds.width / 2);
-          setMouseY(e.clientY - bounds.y - bounds.height / 2);
-        }}
-      >
+      <AppWrapper ref={ref} onMouseMove={updateMouse}>
         <Content>
           <Socials />
         </Content>

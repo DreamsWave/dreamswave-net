@@ -86,6 +86,7 @@ function SocialList() {
             ariaLabel="Discord account"
             icon="discord"
             text="Discord"
+            secondaryText="dreamswave"
           />
           <SocialLink
             href="https://www.artstation.com/dreamswave"

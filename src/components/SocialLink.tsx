@@ -20,7 +20,6 @@ const SocialLinkWrapper = styled.a`
   font-size: 1.2em;
   justify-content: start;
   transition: color 0.2s ease-in-out;
-  font-family: "Montserrat Variable", sans-serif;
 
   &:hover {
     color: #445a73;
@@ -62,6 +61,7 @@ const StyledIcon = styled.i`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const Text = styled.p`
