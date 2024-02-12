@@ -7,23 +7,37 @@ import {
   startLoading,
   toggleTheme,
 } from "./themeSlice";
-import { IMAGES } from "../../constants";
+import { IMAGES, PIXEL_SIZE } from "../../constants";
 import { ThemeImages } from "../../types";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { MoonSVG, SunSVG } from "../../components/SVGIcons";
 
 const ThemeSwitcherWrapper = styled.button`
   position: absolute;
   right: 10px;
   top: 10px;
   z-index: 30;
-  color: #333;
-  background: #fff;
+  color: #94b5bc;
+  background: transparent;
   cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  padding: ${PIXEL_SIZE}px;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: ${PIXEL_SIZE}px solid rgba(148, 181, 188, 1);
+  }
 `;
 
 function ThemeSwitcher() {
   const theme = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   const loadThemeImages = useCallback(
     async (isDarkTheme: boolean) => {
@@ -71,8 +85,19 @@ function ThemeSwitcher() {
   }, [dispatch, loadThemeImages, theme.isDarkTheme]);
 
   return (
-    <ThemeSwitcherWrapper onClick={() => switchTheme()}>
-      {theme.isLoading ? "Loading" : "Switch theme"}
+    <ThemeSwitcherWrapper
+      onClick={() => switchTheme()}
+      onMouseEnter={() => setIsMouseOver(true)}
+      onMouseLeave={() => setIsMouseOver(false)}
+      aria-label={
+        theme.isDarkTheme ? "Switch to light theme" : "Switch to dark theme"
+      }
+    >
+      {theme.isDarkTheme ? (
+        <SunSVG color={isMouseOver ? "#6e96a6" : "#94b5bc"} />
+      ) : (
+        <MoonSVG color={isMouseOver ? "#6e96a6" : "#94b5bc"} />
+      )}
     </ThemeSwitcherWrapper>
   );
 }

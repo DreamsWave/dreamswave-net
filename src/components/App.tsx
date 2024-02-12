@@ -8,7 +8,7 @@ import Socials from "./Socials";
 
 const AppWrapper = styled.div`
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;

@@ -3,6 +3,15 @@ import Icon from "./Icon";
 import { IconType } from "../types";
 import { PIXEL_SIZE } from "../constants";
 import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
+import { CopySmallSVG } from "./SVGIcons";
+
+const CopyIcon = styled(CopySmallSVG)`
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  margin-left: ${PIXEL_SIZE}px;
+  height: ${PIXEL_SIZE * 3}px;
+  width: ${PIXEL_SIZE * 3}px;
+`;
 
 const SocialLinkWrapper = styled.a`
   color: #445a73;
@@ -44,9 +53,10 @@ const StyledPixelCard = styled(PixelCard)`
   }
 `;
 
-const StyledIcon = styled(Icon)`
+const StyledIcon = styled.i`
   margin-left: ${PIXEL_SIZE * 3}px;
   margin-right: ${PIXEL_SIZE * 3}px;
+  display: inline-flex;
 `;
 
 const TextContainer = styled.div`
@@ -62,6 +72,16 @@ const SecondaryText = styled.p`
   margin: 0;
   color: #6e96a6;
   font-size: 0.8em;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: #94b5bc;
+    ${CopyIcon} {
+      opacity: 1;
+    }
+  }
 `;
 
 type SocialLinkProps = {
@@ -78,13 +98,27 @@ function SocialLink({
   text,
   secondaryText,
 }: SocialLinkProps) {
+  const handleSecondaryTextClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (secondaryText) navigator.clipboard.writeText(secondaryText);
+  };
+
   return (
     <SocialLinkWrapper href={href} aria-label={ariaLabel} target="_blank">
       <StyledPixelCard>
-        <StyledIcon type={icon} />
+        <StyledIcon>
+          <Icon type={icon} color="#94b5bc" />
+        </StyledIcon>
         <TextContainer>
           <Text>{text}</Text>
-          {secondaryText && <SecondaryText>{secondaryText}</SecondaryText>}
+          {secondaryText && (
+            <SecondaryText onClick={(e) => handleSecondaryTextClick(e)}>
+              {secondaryText}
+
+              <CopyIcon color="#b6d6dd" />
+            </SecondaryText>
+          )}
         </TextContainer>
       </StyledPixelCard>
     </SocialLinkWrapper>
