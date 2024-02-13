@@ -2,7 +2,6 @@ import styled from "styled-components";
 import SocialButton from "./SocialButton";
 import { PIXEL_SIZE } from "../constants";
 import PixelCard from "./PixelCard";
-import About from "./About";
 
 const SocialGridWrapper = styled.div`
   display: flex;
@@ -14,13 +13,7 @@ const SocialGridRoot = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 340px;
-  max-width: ${PIXEL_SIZE * 76}px;
   position: relative;
-
-  @media (max-width: ${PIXEL_SIZE * 76}px) {
-    max-width: 340px;
-  }
 `;
 
 const SocialGridContainer = styled.div`
@@ -44,8 +37,6 @@ const StyledPixelCard = styled(PixelCard)`
 function SocialGrid() {
   return (
     <SocialGridWrapper>
-      <About />
-
       <SocialGridRoot>
         <StyledPixelCard>
           <SocialGridContainer>

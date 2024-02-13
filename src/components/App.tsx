@@ -15,7 +15,6 @@ const AppWrapper = styled.div`
 `;
 
 const Content = styled.main`
-  padding-top: 100px;
   z-index: 20;
 `;
 
