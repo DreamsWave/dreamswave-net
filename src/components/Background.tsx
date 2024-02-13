@@ -18,6 +18,8 @@ const BackgroundWrapper = styled(animated.div)<{ isdarktheme: string }>`
   width: 100%;
   height: 100vh;
   position: fixed;
+  bottom: 0;
+  left: 0;
   overflow: hidden;
   background: var(--background-color);
   transition: background 0.3s ease-in-out;

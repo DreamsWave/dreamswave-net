@@ -13,7 +13,7 @@ const SocialsWrapper = styled.div`
   justify-content: center;
   gap: ${PIXEL_SIZE * 4}px;
   padding: ${PIXEL_SIZE * 16}px ${PIXEL_SIZE * 4}px;
-  min-width: 420px;
+  min-width: 360px;
   max-width: 1200px;
   margin: 0 auto;
 
