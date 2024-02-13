@@ -3,6 +3,7 @@ import { PIXEL_SIZE } from "../constants";
 type SVGProps = {
   color?: string;
   className?: string;
+  size?: number;
 };
 
 /* SOCIAL ICONS */
@@ -270,6 +271,26 @@ export const MoonSVG = ({ color = "#94b5bc", className }: SVGProps) => {
         <path d="M2 0h2v1H2zM1 1h2v8H1z" />
         <path d="M0 2h3v5H0zM3 4h1v6H3zM4 6h2v4H4zM9 6h1v2H9z" />
         <path d="M6 7h4v1H6zM6 8h3v1H6zM6 9h2v1H6z" />
+      </g>
+    </svg>
+  );
+};
+
+export const AlianSVG = ({ color = "#94b5bc", className, size }: SVGProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size ? size : PIXEL_SIZE * 10}
+      height={size ? size : PIXEL_SIZE * 10}
+      baseProfile="tiny"
+      version="1.2"
+      viewBox="0 0 10 10"
+      className={className}
+    >
+      <g fill={color}>
+        <path d="M2 1h1v1H2zM7 1h1v1H7zM3 2h1v2H3zM6 2h1v2H6zM0 3h1v2H0z" />
+        <path d="M2 3h6v1H2zM9 3h1v2H9zM2 4h1v3H2zM4 4h2v3H4zM7 4h1v3H7z" />
+        <path d="M1 5h8v1H1zM3 6h5v1H3zM3 7h1v1H3zM6 7h1v1H6zM2 8h1v1H2zM7 8h1v1H7z" />
       </g>
     </svg>
   );

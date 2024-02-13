@@ -3,6 +3,7 @@ import PixelCard, { PixelCardContent } from "./PixelCard";
 import AvatarImage from "../assets/images/avatar.png";
 import { PIXEL_SIZE } from "../constants";
 import { useEffect, useState } from "react";
+import { AlianSVG } from "./SVGIcons";
 
 const AboutRoot = styled.div`
   min-width: 340px;
@@ -101,7 +102,12 @@ const AboutDescriptionList = styled.ul`
   }
 `;
 
-const AboutDescriptionListItem = styled.li``;
+const AboutDescriptionListItem = styled.li`
+  align-items: center;
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+`;
 
 function About() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 660);
@@ -167,7 +173,10 @@ function About() {
             Pixel art hobbyist
           </AboutDescriptionListItem>
           <AboutDescriptionListItem>Music enjoyer </AboutDescriptionListItem>
-          <AboutDescriptionListItem>👾Gamer</AboutDescriptionListItem>
+          <AboutDescriptionListItem>
+            <AlianSVG size={20} color="#94b5bc" />
+            Gamer
+          </AboutDescriptionListItem>
         </AboutDescriptionList>
       </PixelCard>
     </AboutRoot>

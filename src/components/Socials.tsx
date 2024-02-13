@@ -14,6 +14,8 @@ const SocialsWrapper = styled.div`
   gap: ${PIXEL_SIZE * 4}px;
   padding: ${PIXEL_SIZE * 16}px ${PIXEL_SIZE * 4}px;
   min-width: 420px;
+  max-width: 1200px;
+  margin: 0 auto;
 
   @media (max-width: 660px) {
     padding: ${PIXEL_SIZE * 4}px ${PIXEL_SIZE * 4}px ${PIXEL_SIZE * 10}px;
