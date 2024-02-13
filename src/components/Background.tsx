@@ -1,5 +1,5 @@
 import { useSpring, animated } from "@react-spring/web";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { useAppSelector } from "../hooks";
 import { selectTheme } from "../features/theme/themeSlice";
 import {
@@ -10,6 +10,7 @@ import {
   CloudRightSVG,
   StarsSVG,
 } from "./SVGBackground";
+import { THEME } from "../types";
 
 const BackgroundWrapper = styled(animated.div)<{ isdarktheme: string }>`
   --background-color: ${({ isdarktheme }) =>
@@ -45,6 +46,7 @@ type BackgroundProps = {
 };
 function Background({ mouseX, mouseY }: BackgroundProps) {
   const theme = useAppSelector(selectTheme);
+  const styledTheme: THEME = useTheme();
 
   const parallaxLevel1 = useSpring({
     x: -(mouseX / 80),
@@ -66,22 +68,26 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
   return (
     <BackgroundWrapper isdarktheme={theme.isDarkTheme.toString()}>
       <Layer>
-        <BackgroundSVG />
+        <BackgroundSVG color={styledTheme.palette.background.layers.mainBg} />
       </Layer>
       <Layer>
-        <StarsSVG />
+        <StarsSVG color={styledTheme.palette.background.layers.stars} />
       </Layer>
       <Layer style={{ ...parallaxLevel4 }}>
-        <CloudBackSVG />
+        <CloudBackSVG color={styledTheme.palette.background.layers.cloudBack} />
       </Layer>
       <Layer style={{ ...parallaxLevel3 }}>
-        <CloudMiddleSVG />
+        <CloudMiddleSVG
+          color={styledTheme.palette.background.layers.cloudMiddle}
+        />
       </Layer>
       <Layer style={{ ...parallaxLevel2 }}>
-        <CloudRightSVG />
+        <CloudRightSVG
+          color={styledTheme.palette.background.layers.cloudRight}
+        />
       </Layer>
       <Layer style={{ ...parallaxLevel1 }}>
-        <CloudLeftSVG />
+        <CloudLeftSVG color={styledTheme.palette.background.layers.cloudLeft} />
       </Layer>
     </BackgroundWrapper>
   );

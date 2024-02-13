@@ -3,7 +3,7 @@ import { PIXEL_SIZE } from "../constants";
 
 export const PixelCardBorder = styled.div`
   position: absolute;
-  background: rgba(199, 224, 229, 1);
+  background: ${({ theme }) => theme.palette.border.dark};
   transition: background 0.3s linear;
 `;
 
@@ -14,9 +14,11 @@ const TopBorder = styled(PixelCardBorder)`
   left: ${PIXEL_SIZE}px;
   background: linear-gradient(
     180deg,
-    rgba(199, 224, 229, 1) 0%,
-    rgba(199, 224, 229, 1) 100%
+    ${({ theme }) => theme.palette.border.dark} 0%,
+    ${({ theme }) => theme.palette.border.dark} 100%
   );
+  opacity: ${({ theme }) =>
+    theme.palette.gradient.opacity ? theme.palette.gradient.opacity : 1};
 `;
 
 const BottomBorder = styled(PixelCardBorder)`
@@ -26,8 +28,8 @@ const BottomBorder = styled(PixelCardBorder)`
   left: ${PIXEL_SIZE}px;
   background: linear-gradient(
     180deg,
-    rgba(215, 232, 234, 1) 0%,
-    rgba(215, 232, 234, 1) 100%
+    ${({ theme }) => theme.palette.border.light} 0%,
+    ${({ theme }) => theme.palette.border.light} 100%
   );
 `;
 
@@ -38,8 +40,8 @@ const LeftBorder = styled(PixelCardBorder)`
   left: 0;
   background: linear-gradient(
     180deg,
-    rgba(199, 224, 229, 1) 0%,
-    rgba(215, 232, 234, 1) 100%
+    ${({ theme }) => theme.palette.border.dark} 0%,
+    ${({ theme }) => theme.palette.border.light} 100%
   );
 `;
 
@@ -50,8 +52,8 @@ const RightBorder = styled(PixelCardBorder)`
   right: 0;
   background: linear-gradient(
     180deg,
-    rgba(199, 224, 229, 1) 0%,
-    rgba(215, 232, 234, 1) 100%
+    ${({ theme }) => theme.palette.border.dark} 0%,
+    ${({ theme }) => theme.palette.border.light} 100%
   );
 `;
 
@@ -62,8 +64,8 @@ const PixelCardWrapper = styled.div`
 export const PixelCardContent = styled.div`
   background: linear-gradient(
     180deg,
-    rgba(199, 224, 229, 0.5) 0%,
-    rgba(215, 232, 234, 0.5) 100%
+    ${({ theme }) => theme.palette.gradient.start} 0%,
+    ${({ theme }) => theme.palette.gradient.end} 100%
   );
   backdrop-filter: blur(5px);
   display: flex;
