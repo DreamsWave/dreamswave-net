@@ -33,7 +33,7 @@ function App() {
   const [mouseY, setMouseY] = useState(0);
 
   const updateMouse = (e: React.MouseEvent) => {
-    if (!window.matchMedia("only screen and (max-width: 760px)").matches) {
+    if (!window.matchMedia("only screen and (max-width: 660px)").matches) {
       setMouseX(e.clientX - bounds.x - bounds.width / 2);
       setMouseY(e.clientY - bounds.y - bounds.height / 2);
     }

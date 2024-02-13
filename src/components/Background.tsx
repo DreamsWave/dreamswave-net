@@ -2,6 +2,14 @@ import { useSpring, animated } from "@react-spring/web";
 import styled from "styled-components";
 import { useAppSelector } from "../hooks";
 import { selectTheme } from "../features/theme/themeSlice";
+import {
+  BackgroundSVG,
+  CloudBackSVG,
+  CloudLeftSVG,
+  CloudMiddleSVG,
+  CloudRightSVG,
+  StarsSVG,
+} from "./SVGBackground";
 
 const BackgroundWrapper = styled(animated.div)<{ isdarktheme: string }>`
   --background-color: ${({ isdarktheme }) =>
@@ -15,18 +23,18 @@ const BackgroundWrapper = styled(animated.div)<{ isdarktheme: string }>`
   transition: background 0.3s ease-in-out;
 `;
 
-const Layer = styled(animated.div)<{
-  imgsrc: string;
-}>`
+const Layer = styled(animated.div)`
   height: calc(100% + 60px);
   width: calc(100% + 60px);
   top: -30px;
   left: -30px;
   position: absolute;
-  background-image: url(${({ imgsrc }) => imgsrc});
-  background-position: center;
-  background-size: cover;
   transition: background 0.3s ease-in-out;
+
+  & svg {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 type BackgroundProps = {
@@ -55,11 +63,24 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
 
   return (
     <BackgroundWrapper isdarktheme={theme.isDarkTheme.toString()}>
-      <Layer imgsrc={theme.images.stars} />
-      <Layer style={{ ...parallaxLevel4 }} imgsrc={theme.images.cloudBack} />
-      <Layer style={{ ...parallaxLevel3 }} imgsrc={theme.images.cloudMiddle} />
-      <Layer style={{ ...parallaxLevel2 }} imgsrc={theme.images.cloudRight} />
-      <Layer style={{ ...parallaxLevel1 }} imgsrc={theme.images.cloudLeft} />
+      <Layer>
+        <BackgroundSVG />
+      </Layer>
+      <Layer>
+        <StarsSVG />
+      </Layer>
+      <Layer style={{ ...parallaxLevel4 }}>
+        <CloudBackSVG />
+      </Layer>
+      <Layer style={{ ...parallaxLevel3 }}>
+        <CloudMiddleSVG />
+      </Layer>
+      <Layer style={{ ...parallaxLevel2 }}>
+        <CloudRightSVG />
+      </Layer>
+      <Layer style={{ ...parallaxLevel1 }}>
+        <CloudLeftSVG />
+      </Layer>
     </BackgroundWrapper>
   );
 }

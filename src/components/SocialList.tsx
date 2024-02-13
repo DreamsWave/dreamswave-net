@@ -11,7 +11,7 @@ const SocialListRoot = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: ${PIXEL_SIZE * 5}px;
 
-  @media (max-width: ${PIXEL_SIZE * 132}px) {
+  @media (max-width: 660px) {
     grid-template-columns: 1fr;
   }
 `;

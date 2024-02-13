@@ -1,15 +1,8 @@
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import {
-  finishLoading,
-  selectTheme,
-  setImages,
-  startLoading,
-  toggleTheme,
-} from "./themeSlice";
-import { IMAGES, PIXEL_SIZE } from "../../constants";
-import { ThemeImages } from "../../types";
-import { useCallback, useEffect, useState } from "react";
+import { selectTheme, toggleTheme } from "./themeSlice";
+import { PIXEL_SIZE } from "../../constants";
+import { useState } from "react";
 import { MoonSVG, SunSVG } from "../../components/SVGIcons";
 
 const ThemeSwitcherWrapper = styled.button`
@@ -39,50 +32,9 @@ function ThemeSwitcher() {
   const dispatch = useAppDispatch();
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
-  const loadThemeImages = useCallback(
-    async (isDarkTheme: boolean) => {
-      const theme = isDarkTheme ? "dark" : "light";
-      const imageUrls = Object.values(IMAGES[theme]);
-      const loadedImages: { [key: string]: string } = {};
-      await Promise.all(
-        imageUrls.map(
-          (url) =>
-            new Promise((resolve, reject) => {
-              const imageLoader = new Image();
-              imageLoader.src = url;
-              imageLoader.onload = () => {
-                loadedImages[url] = imageLoader.src;
-                resolve(null);
-              };
-              imageLoader.onerror = reject;
-            })
-        )
-      );
-      const images: ThemeImages = {
-        cloudBack: loadedImages[IMAGES[theme].cloudBack],
-        cloudLeft: loadedImages[IMAGES[theme].cloudLeft],
-        cloudMiddle: loadedImages[IMAGES[theme].cloudMiddle],
-        cloudRight: loadedImages[IMAGES[theme].cloudRight],
-        stars: loadedImages[IMAGES[theme].stars],
-      };
-      dispatch(setImages(images));
-
-      return loadedImages;
-    },
-    [dispatch]
-  );
-
   const switchTheme = async () => {
-    dispatch(startLoading());
-    await loadThemeImages(!theme.isDarkTheme);
     dispatch(toggleTheme());
-    dispatch(finishLoading());
   };
-
-  useEffect(() => {
-    loadThemeImages(theme.isDarkTheme);
-    dispatch(finishLoading());
-  }, [dispatch, loadThemeImages, theme.isDarkTheme]);
 
   return (
     <ThemeSwitcherWrapper
