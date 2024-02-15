@@ -30,13 +30,34 @@ const theme: THEME = {
       },
     },
     border: {
-      dark: "#c7e0e5",
-      light: "#d7e8ea",
+      dark: {
+        color: "",
+        gradient: {
+          from: "",
+          to: "",
+        },
+      },
+      light: {
+        color: "#c7e0e5",
+        gradient: {
+          from: "#c7e0e5",
+          to: "#d7e8ea",
+        },
+      },
     },
     gradient: {
-      start: "rgba(199, 224, 229, 0.5)",
-      end: "rgba(215, 232, 234, 0.5)",
-      // opacity: 0.5,
+      dark: {
+        from: "",
+        to: "",
+      },
+      light: {
+        from: "rgba(199, 224, 229, 0.5)",
+        to: "rgba(215, 232, 234, 0.5)",
+      },
+    },
+    icon: {
+      dark: "",
+      light: "#94b5bc",
     },
   },
   text: {
@@ -130,6 +151,8 @@ const theme: THEME = {
   zIndex: {
     background: 10,
     mainContent: 20,
+    pixelCardBorder: 25,
+    pixelCardContent: 24,
     appBar: 50,
   },
 };

@@ -42,13 +42,36 @@ export type THEME = {
       };
     };
     border: {
-      dark: string;
-      light: string;
+      dark: {
+        color: string;
+        gradient: {
+          from: string;
+          to: string;
+        };
+      };
+      light: {
+        color: string;
+        gradient: {
+          from: string;
+          to: string;
+        };
+      };
     };
     gradient: {
-      start: string;
-      end: string;
-      opacity?: number;
+      dark: {
+        from: string;
+        to: string;
+        opacity?: number;
+      };
+      light: {
+        from: string;
+        to: string;
+        opacity?: number;
+      };
+    };
+    icon: {
+      dark: string;
+      light: string;
     };
   };
   text: {
@@ -142,6 +165,8 @@ export type THEME = {
   zIndex: {
     background: number;
     mainContent: number;
+    pixelCardBorder: number;
+    pixelCardContent: number;
     appBar: number;
   };
 };
