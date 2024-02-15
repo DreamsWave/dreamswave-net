@@ -1,6 +1,6 @@
 import styled, { useTheme } from "styled-components";
 import Icon from "./Icon";
-import { IconType, THEME } from "../types";
+import { IconType, Theme } from "../types";
 import { PIXEL_SIZE } from "../constants";
 import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
 import { CopySmallSVG } from "./SVGIcons";
@@ -100,8 +100,8 @@ function SocialLink({
   text,
   secondaryText,
 }: SocialLinkProps) {
-  const { isDarkTheme } = useAppSelector(selectTheme);
-  const theme: THEME = useTheme();
+  const { themeType } = useAppSelector(selectTheme);
+  const theme: Theme = useTheme();
   const handleSecondaryTextClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -112,12 +112,7 @@ function SocialLink({
     <SocialLinkWrapper href={href} aria-label={ariaLabel} target="_blank">
       <StyledPixelCard>
         <StyledIcon>
-          <Icon
-            type={icon}
-            color={
-              isDarkTheme ? theme.palette.icon.dark : theme.palette.icon.light
-            }
-          />
+          <Icon type={icon} color={theme.palette.icon[themeType]} />
         </StyledIcon>
         <TextContainer>
           <Text>{text}</Text>

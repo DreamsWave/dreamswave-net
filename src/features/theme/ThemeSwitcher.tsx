@@ -28,7 +28,7 @@ const ThemeSwitcherWrapper = styled.button`
 `;
 
 function ThemeSwitcher() {
-  const theme = useAppSelector(selectTheme);
+  const { themeType } = useAppSelector(selectTheme);
   const dispatch = useAppDispatch();
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
@@ -42,10 +42,10 @@ function ThemeSwitcher() {
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
       aria-label={
-        theme.isDarkTheme ? "Switch to light theme" : "Switch to dark theme"
+        themeType === "dark" ? "Switch to light theme" : "Switch to dark theme"
       }
     >
-      {theme.isDarkTheme ? (
+      {themeType === "dark" ? (
         <SunSVG color={isMouseOver ? "#6e96a6" : "#94b5bc"} />
       ) : (
         <MoonSVG color={isMouseOver ? "#6e96a6" : "#94b5bc"} />

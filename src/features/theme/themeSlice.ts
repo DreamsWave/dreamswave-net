@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../store";
+import { ThemeType } from "../../types";
 
 let isDarkThemeFromLocalStorage: boolean | null = null;
 try {
@@ -8,18 +9,20 @@ try {
   console.error("Failed to access localStorage:", error);
 }
 
-export interface ThemeState {
-  isDarkTheme: boolean;
-}
+export type ThemeState = {
+  themeType: ThemeType;
+};
 
 const initialState: ThemeState = {
-  isDarkTheme:
+  themeType:
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? true
+      ? "dark"
       : isDarkThemeFromLocalStorage !== null
       ? isDarkThemeFromLocalStorage
-      : false,
+        ? "dark"
+        : "light"
+      : "light",
 };
 
 export const themeSlice = createSlice({
@@ -27,8 +30,8 @@ export const themeSlice = createSlice({
   initialState,
   reducers: {
     toggleTheme: (state) => {
-      state.isDarkTheme = !state.isDarkTheme;
-      localStorage.setItem("theme", state.isDarkTheme ? "dark" : "light");
+      state.themeType = state.themeType === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", state.themeType);
     },
   },
 });

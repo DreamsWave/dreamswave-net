@@ -10,11 +10,10 @@ import {
   CloudRightSVG,
   StarsSVG,
 } from "./SVGBackground";
-import { THEME } from "../types";
+import { Theme } from "../types";
 
-const BackgroundWrapper = styled(animated.div)<{ isdarktheme: string }>`
-  --background-color: ${({ isdarktheme }) =>
-    isdarktheme === "true" ? "#2e3e58" : "#dfeded"};
+const BackgroundWrapper = styled(animated.div)<{ $backgroundColor: string }>`
+  --background-color: ${({ $backgroundColor }) => $backgroundColor};
 
   width: 100%;
   height: 100vh;
@@ -45,8 +44,8 @@ type BackgroundProps = {
   mouseY: number;
 };
 function Background({ mouseX, mouseY }: BackgroundProps) {
-  const theme = useAppSelector(selectTheme);
-  const styledTheme: THEME = useTheme();
+  const { themeType } = useAppSelector(selectTheme);
+  const theme: Theme = useTheme();
 
   const parallaxLevel1 = useSpring({
     x: -(mouseX / 80),
@@ -66,28 +65,36 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
   });
 
   return (
-    <BackgroundWrapper isdarktheme={theme.isDarkTheme.toString()}>
+    <BackgroundWrapper
+      $backgroundColor={theme.palette.background[themeType].main}
+    >
       <Layer>
-        <BackgroundSVG color={styledTheme.palette.background.layers.mainBg} />
+        <BackgroundSVG
+          color={theme.palette.background[themeType].layers.mainBg}
+        />
       </Layer>
       <Layer>
-        <StarsSVG color={styledTheme.palette.background.layers.stars} />
+        <StarsSVG color={theme.palette.background[themeType].layers.stars} />
       </Layer>
       <Layer style={{ ...parallaxLevel4 }}>
-        <CloudBackSVG color={styledTheme.palette.background.layers.cloudBack} />
+        <CloudBackSVG
+          color={theme.palette.background[themeType].layers.cloudBack}
+        />
       </Layer>
       <Layer style={{ ...parallaxLevel3 }}>
         <CloudMiddleSVG
-          color={styledTheme.palette.background.layers.cloudMiddle}
+          color={theme.palette.background[themeType].layers.cloudMiddle}
         />
       </Layer>
       <Layer style={{ ...parallaxLevel2 }}>
         <CloudRightSVG
-          color={styledTheme.palette.background.layers.cloudRight}
+          color={theme.palette.background[themeType].layers.cloudRight}
         />
       </Layer>
       <Layer style={{ ...parallaxLevel1 }}>
-        <CloudLeftSVG color={styledTheme.palette.background.layers.cloudLeft} />
+        <CloudLeftSVG
+          color={theme.palette.background[themeType].layers.cloudLeft}
+        />
       </Layer>
     </BackgroundWrapper>
   );

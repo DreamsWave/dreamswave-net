@@ -1,5 +1,3 @@
-export type Theme = "light" | "dark";
-
 export type IconType =
   | "artstation"
   | "discord"
@@ -12,7 +10,9 @@ export type IconType =
   | "twitter"
   | "vk";
 
-export type THEME = {
+export type ThemeType = "dark" | "light";
+
+export type Theme = {
   breakpoints: {
     mobile: number;
   };
@@ -31,25 +31,20 @@ export type THEME = {
       contrastText: string;
     };
     background: {
-      main: string;
-      layers: {
-        cloudBack: string;
-        cloudLeft: string;
-        cloudMiddle: string;
-        cloudRight: string;
-        mainBg: string;
-        stars: string;
+      [key in ThemeType]: {
+        main: string;
+        layers: {
+          cloudBack: string;
+          cloudLeft: string;
+          cloudMiddle: string;
+          cloudRight: string;
+          mainBg: string;
+          stars: string;
+        };
       };
     };
     border: {
-      dark: {
-        color: string;
-        gradient: {
-          from: string;
-          to: string;
-        };
-      };
-      light: {
+      [key in ThemeType]: {
         color: string;
         gradient: {
           from: string;
@@ -58,12 +53,7 @@ export type THEME = {
       };
     };
     gradient: {
-      dark: {
-        from: string;
-        to: string;
-        opacity?: number;
-      };
-      light: {
+      [key in ThemeType]: {
         from: string;
         to: string;
         opacity?: number;
@@ -169,4 +159,8 @@ export type THEME = {
     pixelCardContent: number;
     appBar: number;
   };
+};
+
+export type Themes = {
+  [key in ThemeType]: Theme;
 };

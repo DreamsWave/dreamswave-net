@@ -1,6 +1,6 @@
 import styled, { useTheme } from "styled-components";
 import { PIXEL_SIZE } from "../constants";
-import { THEME } from "../types";
+import { Theme } from "../types";
 import { useAppSelector } from "../hooks";
 import { selectTheme } from "../features/theme/themeSlice";
 
@@ -103,90 +103,36 @@ function PixelCard({
   className?: string;
   contentClassName?: string;
 }) {
-  const theme: THEME = useTheme();
-  const { isDarkTheme } = useAppSelector(selectTheme);
+  const theme: Theme = useTheme();
+  const { themeType } = useAppSelector(selectTheme);
+
   return (
     <PixelCardWrapper className={className}>
       <TopBorder
-        $color={
-          isDarkTheme
-            ? theme.palette.border.dark.color
-            : theme.palette.border.light.color
-        }
-        $gradientFrom={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.from
-            : theme.palette.gradient.light.from
-        }
-        $gradientTo={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.to
-            : theme.palette.gradient.light.to
-        }
-      />
-      <BottomBorder
-        $color={
-          isDarkTheme
-            ? theme.palette.border.dark.color
-            : theme.palette.border.light.color
-        }
-        $gradientFrom={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.from
-            : theme.palette.gradient.light.from
-        }
-        $gradientTo={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.to
-            : theme.palette.gradient.light.to
-        }
-      />
-      <LeftBorder
-        $color={
-          isDarkTheme
-            ? theme.palette.border.dark.color
-            : theme.palette.border.light.color
-        }
-        $gradientFrom={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.from
-            : theme.palette.gradient.light.from
-        }
-        $gradientTo={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.to
-            : theme.palette.gradient.light.to
-        }
+        $color={theme.palette.border[themeType].color}
+        $gradientFrom={theme.palette.border[themeType].gradient.from}
+        $gradientTo={theme.palette.border[themeType].gradient.to}
       />
       <RightBorder
-        $color={
-          isDarkTheme
-            ? theme.palette.border.dark.color
-            : theme.palette.border.light.color
-        }
-        $gradientFrom={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.from
-            : theme.palette.gradient.light.from
-        }
-        $gradientTo={
-          isDarkTheme
-            ? theme.palette.border.dark.gradient.to
-            : theme.palette.gradient.light.to
-        }
+        $color={theme.palette.border[themeType].color}
+        $gradientFrom={theme.palette.border[themeType].gradient.from}
+        $gradientTo={theme.palette.border[themeType].gradient.to}
       />
+      <BottomBorder
+        $color={theme.palette.border[themeType].color}
+        $gradientFrom={theme.palette.border[themeType].gradient.from}
+        $gradientTo={theme.palette.border[themeType].gradient.to}
+      />
+      <LeftBorder
+        $color={theme.palette.border[themeType].color}
+        $gradientFrom={theme.palette.border[themeType].gradient.from}
+        $gradientTo={theme.palette.border[themeType].gradient.to}
+      />
+
       <PixelCardContent
         className={contentClassName}
-        $gradientFrom={
-          isDarkTheme
-            ? theme.palette.gradient.dark.from
-            : theme.palette.gradient.light.from
-        }
-        $gradientTo={
-          isDarkTheme
-            ? theme.palette.gradient.dark.to
-            : theme.palette.gradient.light.to
-        }
+        $gradientFrom={theme.palette.gradient[themeType].from}
+        $gradientTo={theme.palette.gradient[themeType].to}
       >
         {children}
       </PixelCardContent>
