@@ -1,7 +1,5 @@
 import { useSpring, animated } from "@react-spring/web";
 import styled, { useTheme } from "styled-components";
-import { useAppSelector } from "../hooks";
-import { selectTheme } from "../features/theme/themeSlice";
 import {
   BackgroundSVG,
   CloudBackSVG,
@@ -44,7 +42,6 @@ type BackgroundProps = {
   mouseY: number;
 };
 function Background({ mouseX, mouseY }: BackgroundProps) {
-  const { themeType } = useAppSelector(selectTheme);
   const theme: Theme = useTheme();
 
   const parallaxLevel1 = useSpring({
@@ -65,36 +62,24 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
   });
 
   return (
-    <BackgroundWrapper
-      $backgroundColor={theme.palette.background[themeType].main}
-    >
+    <BackgroundWrapper $backgroundColor={theme.palette.background.main}>
       <Layer>
-        <BackgroundSVG
-          color={theme.palette.background[themeType].layers.mainBg}
-        />
+        <BackgroundSVG color={theme.palette.background.layers.mainBg} />
       </Layer>
       <Layer>
-        <StarsSVG color={theme.palette.background[themeType].layers.stars} />
+        <StarsSVG color={theme.palette.background.layers.stars} />
       </Layer>
       <Layer style={{ ...parallaxLevel4 }}>
-        <CloudBackSVG
-          color={theme.palette.background[themeType].layers.cloudBack}
-        />
+        <CloudBackSVG color={theme.palette.background.layers.cloudBack} />
       </Layer>
       <Layer style={{ ...parallaxLevel3 }}>
-        <CloudMiddleSVG
-          color={theme.palette.background[themeType].layers.cloudMiddle}
-        />
+        <CloudMiddleSVG color={theme.palette.background.layers.cloudMiddle} />
       </Layer>
       <Layer style={{ ...parallaxLevel2 }}>
-        <CloudRightSVG
-          color={theme.palette.background[themeType].layers.cloudRight}
-        />
+        <CloudRightSVG color={theme.palette.background.layers.cloudRight} />
       </Layer>
       <Layer style={{ ...parallaxLevel1 }}>
-        <CloudLeftSVG
-          color={theme.palette.background[themeType].layers.cloudLeft}
-        />
+        <CloudLeftSVG color={theme.palette.background.layers.cloudLeft} />
       </Layer>
     </BackgroundWrapper>
   );

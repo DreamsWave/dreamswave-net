@@ -19,59 +19,28 @@ const lightTheme: Theme = {
       contrastText: "",
     },
     background: {
-      dark: {
-        main: "",
-        layers: {
-          cloudBack: "",
-          cloudLeft: "",
-          cloudMiddle: "",
-          cloudRight: "",
-          mainBg: "",
-          stars: "",
-        },
-      },
-      light: {
-        main: "#dfeded",
-        layers: {
-          cloudBack: "#d9eaed",
-          cloudLeft: "#c7e0e5",
-          cloudMiddle: "#d2e6e9",
-          cloudRight: "#cbe3e6",
-          mainBg: "#dfeded",
-          stars: "#ffffff",
-        },
+      main: "#dfeded",
+      layers: {
+        cloudBack: "#d9eaed",
+        cloudLeft: "#c7e0e5",
+        cloudMiddle: "#d2e6e9",
+        cloudRight: "#cbe3e6",
+        mainBg: "#dfeded",
+        stars: "#ffffff",
       },
     },
     border: {
-      dark: {
-        color: "",
-        gradient: {
-          from: "",
-          to: "",
-        },
-      },
-      light: {
-        color: "#c7e0e5",
-        gradient: {
-          from: "#c7e0e5",
-          to: "#d7e8ea",
-        },
+      color: "#c7e0e5",
+      gradient: {
+        from: "#c7e0e5",
+        to: "#d7e8ea",
       },
     },
     gradient: {
-      dark: {
-        from: "",
-        to: "",
-      },
-      light: {
-        from: "rgba(199, 224, 229, 0.5)",
-        to: "rgba(215, 232, 234, 0.5)",
-      },
+      from: "rgba(199, 224, 229, 0.5)",
+      to: "rgba(215, 232, 234, 0.5)",
     },
-    icon: {
-      dark: "",
-      light: "#94b5bc",
-    },
+    icon: "#94b5bc",
   },
   text: {
     primary: "#445a73",
@@ -189,74 +158,43 @@ const darkTheme: Theme = {
       contrastText: "",
     },
     background: {
-      dark: {
-        main: "",
-        layers: {
-          cloudBack: "",
-          cloudLeft: "",
-          cloudMiddle: "",
-          cloudRight: "",
-          mainBg: "",
-          stars: "",
-        },
-      },
-      light: {
-        main: "#dfeded",
-        layers: {
-          cloudBack: "#d9eaed",
-          cloudLeft: "#c7e0e5",
-          cloudMiddle: "#d2e6e9",
-          cloudRight: "#cbe3e6",
-          mainBg: "#dfeded",
-          stars: "#ffffff",
-        },
+      main: "",
+      layers: {
+        cloudBack: "",
+        cloudLeft: "",
+        cloudMiddle: "",
+        cloudRight: "",
+        mainBg: "",
+        stars: "",
       },
     },
     border: {
-      dark: {
-        color: "",
-        gradient: {
-          from: "",
-          to: "",
-        },
-      },
-      light: {
-        color: "#c7e0e5",
-        gradient: {
-          from: "#c7e0e5",
-          to: "#d7e8ea",
-        },
-      },
-    },
-    gradient: {
-      dark: {
+      color: "",
+      gradient: {
         from: "",
         to: "",
       },
-      light: {
-        from: "rgba(199, 224, 229, 0.5)",
-        to: "rgba(215, 232, 234, 0.5)",
-      },
     },
-    icon: {
-      dark: "",
-      light: "#94b5bc",
+    gradient: {
+      from: "",
+      to: "",
     },
+    icon: "",
   },
   text: {
-    primary: "#445a73",
-    secondary: "#6e96a6",
-    disabled: "#b8d3d0",
+    primary: "",
+    secondary: "",
+    disabled: "",
   },
   background: {
     default: "",
   },
   action: {
     active: "",
-    hover: "#94b5bc",
+    hover: "",
     selected: "",
     disabled: "",
-    focus: "#94b5bc",
+    focus: "",
   },
   spacing: {
     xs: 5,

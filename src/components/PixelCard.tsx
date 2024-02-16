@@ -1,8 +1,6 @@
 import styled, { useTheme } from "styled-components";
 import { PIXEL_SIZE } from "../constants";
 import { Theme } from "../types";
-import { useAppSelector } from "../hooks";
-import { selectTheme } from "../features/theme/themeSlice";
 
 export const PixelCardBorder = styled.div<{ $color: string }>`
   position: absolute;
@@ -104,35 +102,34 @@ function PixelCard({
   contentClassName?: string;
 }) {
   const theme: Theme = useTheme();
-  const { themeType } = useAppSelector(selectTheme);
 
   return (
     <PixelCardWrapper className={className}>
       <TopBorder
-        $color={theme.palette.border[themeType].color}
-        $gradientFrom={theme.palette.border[themeType].gradient.from}
-        $gradientTo={theme.palette.border[themeType].gradient.to}
+        $color={theme.palette.border.color}
+        $gradientFrom={theme.palette.border.gradient.from}
+        $gradientTo={theme.palette.border.gradient.to}
       />
       <RightBorder
-        $color={theme.palette.border[themeType].color}
-        $gradientFrom={theme.palette.border[themeType].gradient.from}
-        $gradientTo={theme.palette.border[themeType].gradient.to}
+        $color={theme.palette.border.color}
+        $gradientFrom={theme.palette.border.gradient.from}
+        $gradientTo={theme.palette.border.gradient.to}
       />
       <BottomBorder
-        $color={theme.palette.border[themeType].color}
-        $gradientFrom={theme.palette.border[themeType].gradient.from}
-        $gradientTo={theme.palette.border[themeType].gradient.to}
+        $color={theme.palette.border.color}
+        $gradientFrom={theme.palette.border.gradient.from}
+        $gradientTo={theme.palette.border.gradient.to}
       />
       <LeftBorder
-        $color={theme.palette.border[themeType].color}
-        $gradientFrom={theme.palette.border[themeType].gradient.from}
-        $gradientTo={theme.palette.border[themeType].gradient.to}
+        $color={theme.palette.border.color}
+        $gradientFrom={theme.palette.border.gradient.from}
+        $gradientTo={theme.palette.border.gradient.to}
       />
 
       <PixelCardContent
         className={contentClassName}
-        $gradientFrom={theme.palette.gradient[themeType].from}
-        $gradientTo={theme.palette.gradient[themeType].to}
+        $gradientFrom={theme.palette.gradient.from}
+        $gradientTo={theme.palette.gradient.to}
       >
         {children}
       </PixelCardContent>

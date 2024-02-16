@@ -17,7 +17,7 @@ export type Theme = {
     mobile: number;
   };
   palette: {
-    mode: string;
+    mode: ThemeType;
     primary: {
       main: string;
       light: string;
@@ -31,38 +31,29 @@ export type Theme = {
       contrastText: string;
     };
     background: {
-      [key in ThemeType]: {
-        main: string;
-        layers: {
-          cloudBack: string;
-          cloudLeft: string;
-          cloudMiddle: string;
-          cloudRight: string;
-          mainBg: string;
-          stars: string;
-        };
+      main: string;
+      layers: {
+        cloudBack: string;
+        cloudLeft: string;
+        cloudMiddle: string;
+        cloudRight: string;
+        mainBg: string;
+        stars: string;
       };
     };
     border: {
-      [key in ThemeType]: {
-        color: string;
-        gradient: {
-          from: string;
-          to: string;
-        };
+      color: string;
+      gradient: {
+        from: string;
+        to: string;
       };
     };
     gradient: {
-      [key in ThemeType]: {
-        from: string;
-        to: string;
-        opacity?: number;
-      };
+      from: string;
+      to: string;
+      opacity?: number;
     };
-    icon: {
-      dark: string;
-      light: string;
-    };
+    icon: string;
   };
   text: {
     primary: string;
