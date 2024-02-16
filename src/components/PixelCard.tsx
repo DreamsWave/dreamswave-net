@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PixelCardBorder = styled.div(({ theme }) => ({
   position: "absolute",
   background: theme.palette.border.color,
-  transition: `background ${theme.transitions.duration.standard} ${theme.transitions.easing.easeInOut}`,
+  transition: `background ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut}`,
   zIndex: theme.zIndex.pixelCardBorder,
 }));
 
@@ -51,7 +51,7 @@ export const PixelCardContent = styled.div(({ theme }) => ({
   flexGrow: 1,
   margin: theme.spacing(1),
   position: "relative",
-  transition: `all ${theme.transitions.duration.standard}`,
+  transition: `all ${theme.transitions.duration.standard}ms`,
   zIndex: theme.zIndex.pixelCardContent,
 }));
 

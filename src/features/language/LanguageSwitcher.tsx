@@ -1,37 +1,37 @@
 import { useTheme } from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { selectTheme, toggleTheme } from "./themeSlice";
+import { selectLanguage, toggleLanguage } from "./languageSlice";
 import { useState } from "react";
 import IconButton from "../../components/IconButton";
 import SVGIcon from "../../components/SVGIcon";
 
-function ThemeSwitcher() {
-  const { themeType } = useAppSelector(selectTheme);
+function LanguageSwitcher() {
+  const { languageType } = useAppSelector(selectLanguage);
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
-  const switchTheme = async () => {
-    dispatch(toggleTheme());
+  const switchLanguage = async () => {
+    dispatch(toggleLanguage());
   };
 
   return (
     <IconButton
-      onClick={() => switchTheme()}
+      onClick={() => switchLanguage()}
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
       aria-label={
-        themeType === "dark" ? "Switch to light theme" : "Switch to dark theme"
+        languageType === "en" ? "Сменить на русский язык" : "Switch to english"
       }
     >
-      {themeType === "dark" ? (
+      {languageType === "en" ? (
         <SVGIcon
-          iconName="sun"
+          iconName="lang-en"
           fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
         />
       ) : (
         <SVGIcon
-          iconName="moon"
+          iconName="lang-ru"
           fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
         />
       )}
@@ -39,4 +39,4 @@ function ThemeSwitcher() {
   );
 }
 
-export default ThemeSwitcher;
+export default LanguageSwitcher;

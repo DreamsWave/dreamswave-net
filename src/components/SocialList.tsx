@@ -1,20 +1,18 @@
 import styled from "styled-components";
 import SocialLink from "./SocialLink";
-import { PIXEL_SIZE } from "../constants";
 
-const SocialListRoot = styled.div`
-  min-width: 340px;
-  width: 100%;
-  max-width: 800px;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: ${PIXEL_SIZE * 5}px;
-
-  @media (max-width: 660px) {
-    grid-template-columns: 1fr;
-  }
-`;
+const SocialListRoot = styled.div(({ theme }) => ({
+  minWidth: "340px",
+  width: "100%",
+  maxWidth: "800px",
+  position: "relative",
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: theme.spacing(5),
+  [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
+    gridTemplateColumns: "1fr",
+  },
+}));
 
 function SocialList() {
   return (
@@ -71,7 +69,7 @@ function SocialList() {
       <SocialLink
         href="https://www.artstation.com/dreamswave"
         ariaLabel="ArtStation account"
-        icon="artstation"
+        icon="art-station"
         text="ArtStation"
         secondaryText="dreamswave"
       />

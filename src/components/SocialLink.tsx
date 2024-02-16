@@ -1,17 +1,7 @@
 import styled, { useTheme } from "styled-components";
-import Icon from "./Icon";
-import { IconType, Theme } from "../types";
-import { PIXEL_SIZE } from "../constants";
 import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
-import { CopySmallSVG } from "./SVGIcons";
-
-const CopyIcon = styled(CopySmallSVG)(({ theme }) => ({
-  opacity: 0,
-  transition: `opacity ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
-  marginLeft: `${PIXEL_SIZE}px`,
-  height: theme.spacing(3),
-  width: theme.spacing(3),
-}));
+import SVGIcon from "./SVGIcon";
+import { IconNames } from "../icons-svg";
 
 const SocialLinkWrapper = styled.a(({ theme }) => ({
   ...theme.typography.h2,
@@ -29,7 +19,7 @@ const SocialLinkWrapper = styled.a(({ theme }) => ({
   "&:focus": {
     outline: "none",
     [`${PixelCardBorder}`]: {
-      background: theme.palette.primary.dark,
+      background: theme.action.focus,
     },
   },
 }));
@@ -43,10 +33,16 @@ const StyledPixelCard = styled(PixelCard)(({ theme }) => ({
   },
 }));
 
-const StyledIcon = styled.i(({ theme }) => ({
+const StyledSVGIcon = styled(SVGIcon)(({ theme }) => ({
   marginLeft: theme.spacing(3),
   marginRight: theme.spacing(3),
   display: "inline-flex",
+}));
+
+const StyledCopySmallSVGIcon = styled(SVGIcon)(({ theme }) => ({
+  marginLeft: theme.spacing(2),
+  opacity: 0,
+  transition: `opacity ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
 }));
 
 const TextContainer = styled.div({
@@ -68,7 +64,7 @@ const SecondaryText = styled.p(({ theme }) => ({
   transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
   "&:hover": {
     color: theme.action.hover,
-    [`${CopyIcon}`]: {
+    [`${StyledCopySmallSVGIcon}`]: {
       opacity: 1,
     },
   },
@@ -77,7 +73,7 @@ const SecondaryText = styled.p(({ theme }) => ({
 type SocialLinkProps = {
   href: string;
   ariaLabel: string;
-  icon: IconType;
+  icon: IconNames;
   text: string;
   secondaryText?: string;
 };
@@ -89,7 +85,7 @@ function SocialLink({
   text,
   secondaryText,
 }: SocialLinkProps) {
-  const theme: Theme = useTheme();
+  const theme = useTheme();
   const handleSecondaryTextClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -99,15 +95,17 @@ function SocialLink({
   return (
     <SocialLinkWrapper href={href} aria-label={ariaLabel} target="_blank">
       <StyledPixelCard>
-        <StyledIcon>
-          <Icon type={icon} color={theme.palette.icon} />
-        </StyledIcon>
+        <StyledSVGIcon iconName={icon} />
         <TextContainer>
           <Text>{text}</Text>
           {secondaryText && (
             <SecondaryText onClick={(e) => handleSecondaryTextClick(e)}>
               {secondaryText}
-              <CopyIcon color={theme.palette.icon} />
+              <StyledCopySmallSVGIcon
+                iconName="copy-small"
+                size={3}
+                fill={theme.palette.primary.main}
+              />
             </SecondaryText>
           )}
         </TextContainer>

@@ -3,8 +3,10 @@ import PixelCard, { PixelCardContent } from "./PixelCard";
 import AvatarImage from "../assets/images/avatar.png";
 import { PIXEL_SIZE } from "../constants";
 import { useEffect, useState } from "react";
-import { AlianSVG } from "./SVGIcons";
 import { Theme } from "../types";
+import SVGIcon from "./SVGIcon";
+import { useAppSelector } from "../hooks";
+import { selectLanguage } from "../features/language/languageSlice";
 
 const AboutRoot = styled.div`
   min-width: 340px;
@@ -39,7 +41,7 @@ const AvatarImg = styled.img<{ $backgroundColor: string }>`
   background: ${({ $backgroundColor }) => $backgroundColor};
 `;
 const AvatarBorder = styled.svg`
-  zindex: 66;
+  z-index: 66;
   position: absolute;
   top: 0;
   left: 0;
@@ -113,6 +115,7 @@ const AboutDescriptionListItem = styled.li`
 function About() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 660);
   const theme: Theme = useTheme();
+  const { languageType } = useAppSelector(selectLanguage);
 
   useEffect(() => {
     const handleResize = () => {
@@ -171,19 +174,27 @@ function About() {
             </Avatar>
           )}
           <AboutNames>
-            <AboutName>Alexey Uskov</AboutName>
+            <AboutName>
+              {languageType === "en" ? `Alexey Uskov` : `Усков Алексей`}
+            </AboutName>
             <AboutNickname>DreamsWave</AboutNickname>
           </AboutNames>
         </AboutHero>
         <AboutDescriptionList>
-          <AboutDescriptionListItem>Web developer</AboutDescriptionListItem>
           <AboutDescriptionListItem>
-            Pixel art hobbyist
+            {languageType === "en" ? `Web developer` : `Веб разработчик`}
           </AboutDescriptionListItem>
-          <AboutDescriptionListItem>Music enjoyer </AboutDescriptionListItem>
           <AboutDescriptionListItem>
-            <AlianSVG size={20} color={theme.palette.icon} />
-            Gamer
+            {languageType === "en"
+              ? `Pixel art hobbyist`
+              : `Любитель пиксельной графики`}
+          </AboutDescriptionListItem>
+          <AboutDescriptionListItem>
+            {languageType === "en" ? `Music enjoyer` : `Меломан`}
+          </AboutDescriptionListItem>
+          <AboutDescriptionListItem>
+            <SVGIcon iconName="alian" fill={theme.palette.icon.main} size={5} />
+            {languageType === "en" ? `Gamer` : `Геймер`}
           </AboutDescriptionListItem>
         </AboutDescriptionList>
       </PixelCard>

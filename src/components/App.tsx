@@ -3,13 +3,13 @@ import Background from "./Background";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 import styled, { ThemeProvider } from "styled-components";
-import ThemeSwitcher from "../features/theme/ThemeSwitcher";
 import Socials from "./Socials";
 import { useSelector } from "react-redux";
 import { selectTheme } from "../features/theme/themeSlice";
 import { createTheme } from "../themes";
 import { selectPixelSize } from "../features/pixelSize/pixelSizeSlice";
-import PixelSizeSwitcher from "../features/pixelSize/PixelSizeSwitcher";
+import Controls from "./Controls";
+import Copyright from "./Copyright";
 
 const AppWrapper = styled.div(() => ({
   minHeight: `100vh`,
@@ -20,16 +20,7 @@ const AppWrapper = styled.div(() => ({
 }));
 
 const Content = styled.main`
-  z-index: 20;
-`;
-
-const Author = styled.span`
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  z-index: 10;
-  color: #fff;
-  font-size: 14px;
+  z-index: ${({ theme }) => theme.zIndex.mainContent};
 `;
 
 function App() {
@@ -54,12 +45,11 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper ref={ref} onMouseMove={updateMouse}>
+        <Controls />
         <Content>
           <Socials />
         </Content>
-        <PixelSizeSwitcher />
-        <ThemeSwitcher />
-        <Author>dreamed by DreamsWave © 2024</Author>
+        <Copyright>dreamed by DreamsWave © 2024</Copyright>
         <Background mouseX={mouseX} mouseY={mouseY} />
       </AppWrapper>
     </ThemeProvider>

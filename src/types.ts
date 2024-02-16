@@ -12,6 +12,8 @@ export type IconType =
 
 export type ThemeType = "dark" | "light";
 
+export type LanguageType = "en" | "ru";
+
 export type Palette = {
   lightest: string;
   light: string;
@@ -70,7 +72,11 @@ export type Theme = {
       to: string;
       opacity?: number;
     };
-    icon: string;
+    icon: {
+      light: string;
+      main: string;
+      dark: string;
+    };
     text: {
       primary: string;
       secondary: string;

@@ -48,7 +48,11 @@ const theme: Theme = {
       from: hexToRgba(primaryPalette.light, 0.5),
       to: hexToRgba(primaryPalette.lightest, 0.5),
     },
-    icon: primaryPalette.main,
+    icon: {
+      light: primaryPalette.light,
+      main: primaryPalette.main,
+      dark: primaryPalette.dark,
+    },
     text: {
       primary: primaryPalette.text.dark,
       secondary: primaryPalette.text.main,
@@ -63,7 +67,7 @@ const theme: Theme = {
     hover: primaryPalette.text.light,
     selected: "",
     disabled: "",
-    focus: primaryPalette.main,
+    focus: primaryPalette.dark,
   },
   typography: {
     htmlFontSize: 16,
