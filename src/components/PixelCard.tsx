@@ -1,96 +1,59 @@
-import styled, { useTheme } from "styled-components";
-import { PIXEL_SIZE } from "../constants";
-import { Theme } from "../types";
+import styled from "styled-components";
 
-export const PixelCardBorder = styled.div<{ $color: string }>`
-  position: absolute;
-  background: ${({ $color }) => $color};
-  transition: background 0.3s linear;
-  z-index: ${({ theme }) => theme.zIndex.pixelCardBorder};
-`;
+export const PixelCardBorder = styled.div(({ theme }) => ({
+  position: "absolute",
+  background: theme.palette.border.color,
+  transition: `background ${theme.transitions.duration.standard} ${theme.transitions.easing.easeInOut}`,
+  zIndex: theme.zIndex.pixelCardBorder,
+}));
 
-const TopBorder = styled(PixelCardBorder)<{
-  $gradientFrom: string;
-  $gradientTo: string;
-}>`
-  width: calc(100% - ${PIXEL_SIZE * 2}px);
-  height: ${PIXEL_SIZE}px;
-  top: 0;
-  left: ${PIXEL_SIZE}px;
-  background: linear-gradient(
-    180deg,
-    ${({ $gradientFrom }) => $gradientFrom} 0%,
-    ${({ $gradientFrom }) => $gradientFrom} 100%
-  );
-`;
+const TopBorder = styled(PixelCardBorder)(({ theme }) => ({
+  width: `calc(100% - ${theme.spacing(2)})`,
+  height: theme.spacing(1),
+  top: 0,
+  left: theme.spacing(1),
+  background: `linear-gradient(180deg, ${theme.palette.border.gradient.from} 0%, ${theme.palette.border.gradient.from} 100%)`,
+}));
 
-const BottomBorder = styled(PixelCardBorder)<{
-  $gradientFrom: string;
-  $gradientTo: string;
-}>`
-  width: calc(100% - ${PIXEL_SIZE * 2}px);
-  height: ${PIXEL_SIZE}px;
-  bottom: 0;
-  left: ${PIXEL_SIZE}px;
-  background: linear-gradient(
-    180deg,
-    ${({ $gradientTo }) => $gradientTo} 0%,
-    ${({ $gradientTo }) => $gradientTo} 100%
-  );
-`;
+const BottomBorder = styled(PixelCardBorder)(({ theme }) => ({
+  width: `calc(100% - ${theme.spacing(2)})`,
+  height: theme.spacing(1),
+  bottom: 0,
+  left: theme.spacing(1),
+  background: `linear-gradient(180deg, ${theme.palette.border.gradient.to} 0%, ${theme.palette.border.gradient.to} 100%)`,
+}));
 
-const LeftBorder = styled(PixelCardBorder)<{
-  $gradientFrom: string;
-  $gradientTo: string;
-}>`
-  width: ${PIXEL_SIZE}px;
-  height: calc(100% - ${PIXEL_SIZE * 2}px);
-  top: ${PIXEL_SIZE}px;
-  left: 0;
-  background: linear-gradient(
-    180deg,
-    ${({ $gradientFrom }) => $gradientFrom} 0%,
-    ${({ $gradientTo }) => $gradientTo} 100%
-  );
-`;
+const LeftBorder = styled(PixelCardBorder)(({ theme }) => ({
+  width: theme.spacing(1),
+  height: `calc(100% - ${theme.spacing(2)})`,
+  top: theme.spacing(1),
+  left: 0,
+  background: `linear-gradient(180deg, ${theme.palette.border.gradient.from} 0%, ${theme.palette.border.gradient.to} 100%)`,
+}));
 
-const RightBorder = styled(PixelCardBorder)<{
-  $gradientFrom: string;
-  $gradientTo: string;
-}>`
-  width: ${PIXEL_SIZE}px;
-  height: calc(100% - ${PIXEL_SIZE * 2}px);
-  top: ${PIXEL_SIZE}px;
-  right: 0;
-  background: linear-gradient(
-    180deg,
-    ${({ $gradientFrom }) => $gradientFrom} 0%,
-    ${({ $gradientTo }) => $gradientTo} 100%
-  );
-`;
+const RightBorder = styled(PixelCardBorder)(({ theme }) => ({
+  width: theme.spacing(1),
+  height: `calc(100% - ${theme.spacing(2)})`,
+  top: theme.spacing(1),
+  right: 0,
+  background: `linear-gradient(180deg, ${theme.palette.border.gradient.from} 0%, ${theme.palette.border.gradient.to} 100%)`,
+}));
 
 const PixelCardWrapper = styled.div`
   position: relative;
 `;
 
-export const PixelCardContent = styled.div<{
-  $gradientFrom: string;
-  $gradientTo: string;
-}>`
-  background: linear-gradient(
-    180deg,
-    ${({ $gradientFrom }) => $gradientFrom} 0%,
-    ${({ $gradientTo }) => $gradientTo} 100%
-  );
-  backdrop-filter: blur(5px);
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin: ${PIXEL_SIZE}px;
-  position: relative;
-  transition: all 0.3s;
-  z-index: ${({ theme }) => theme.zIndex.pixelCardContent};
-`;
+export const PixelCardContent = styled.div(({ theme }) => ({
+  background: `linear-gradient(180deg, ${theme.palette.gradient.from} 0%, ${theme.palette.gradient.to} 100%)`,
+  backdropFilter: "blur(5px)",
+  display: "flex",
+  flexDirection: "column",
+  flexGrow: 1,
+  margin: theme.spacing(1),
+  position: "relative",
+  transition: `all ${theme.transitions.duration.standard}`,
+  zIndex: theme.zIndex.pixelCardContent,
+}));
 
 function PixelCard({
   children,
@@ -101,36 +64,13 @@ function PixelCard({
   className?: string;
   contentClassName?: string;
 }) {
-  const theme: Theme = useTheme();
-
   return (
     <PixelCardWrapper className={className}>
-      <TopBorder
-        $color={theme.palette.border.color}
-        $gradientFrom={theme.palette.border.gradient.from}
-        $gradientTo={theme.palette.border.gradient.to}
-      />
-      <RightBorder
-        $color={theme.palette.border.color}
-        $gradientFrom={theme.palette.border.gradient.from}
-        $gradientTo={theme.palette.border.gradient.to}
-      />
-      <BottomBorder
-        $color={theme.palette.border.color}
-        $gradientFrom={theme.palette.border.gradient.from}
-        $gradientTo={theme.palette.border.gradient.to}
-      />
-      <LeftBorder
-        $color={theme.palette.border.color}
-        $gradientFrom={theme.palette.border.gradient.from}
-        $gradientTo={theme.palette.border.gradient.to}
-      />
-
-      <PixelCardContent
-        className={contentClassName}
-        $gradientFrom={theme.palette.gradient.from}
-        $gradientTo={theme.palette.gradient.to}
-      >
+      <TopBorder />
+      <RightBorder />
+      <BottomBorder />
+      <LeftBorder />
+      <PixelCardContent className={contentClassName}>
         {children}
       </PixelCardContent>
     </PixelCardWrapper>

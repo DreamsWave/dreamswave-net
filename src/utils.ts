@@ -40,3 +40,6 @@ export const hexToRgba = (hex: string, alpha?: number): string => {
     return `rgb(${r}, ${g}, ${b})`;
   }
 };
+
+export const createSpacing = (pixelSize: number) => (factor: number) =>
+  `${factor * pixelSize}px`;

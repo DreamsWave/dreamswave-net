@@ -1,21 +1,23 @@
 import "../App.css";
 import Background from "./Background";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 import styled, { ThemeProvider } from "styled-components";
 import ThemeSwitcher from "../features/theme/ThemeSwitcher";
 import Socials from "./Socials";
 import { useSelector } from "react-redux";
 import { selectTheme } from "../features/theme/themeSlice";
-import themes from "../themes";
+import { createTheme } from "../themes";
+import { selectPixelSize } from "../features/pixelSize/pixelSizeSlice";
+import PixelSizeSwitcher from "../features/pixelSize/PixelSizeSwitcher";
 
-const AppWrapper = styled.div`
-  min-height: 100vh;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-`;
+const AppWrapper = styled.div(() => ({
+  minHeight: `100vh`,
+  width: `100%`,
+  position: `relative`,
+  display: `flex`,
+  flexDirection: `column`,
+}));
 
 const Content = styled.main`
   z-index: 20;
@@ -35,7 +37,8 @@ function App() {
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
   const { themeType } = useSelector(selectTheme);
-  const theme = themes[themeType];
+  const { pixelSize } = useSelector(selectPixelSize);
+  const theme = createTheme(themeType, pixelSize);
 
   const updateMouse = (e: React.MouseEvent) => {
     if (!window.matchMedia("only screen and (max-width: 660px)").matches) {
@@ -44,12 +47,17 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    document.documentElement.style.fontSize = `${pixelSize * 4}px`;
+  }, [pixelSize]);
+
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper ref={ref} onMouseMove={updateMouse}>
         <Content>
           <Socials />
         </Content>
+        <PixelSizeSwitcher />
         <ThemeSwitcher />
         <Author>dreamed by DreamsWave © 2024</Author>
         <Background mouseX={mouseX} mouseY={mouseY} />

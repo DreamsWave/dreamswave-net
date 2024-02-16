@@ -5,87 +5,74 @@ import { PIXEL_SIZE } from "../constants";
 import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
 import { CopySmallSVG } from "./SVGIcons";
 
-const CopyIcon = styled(CopySmallSVG)`
-  opacity: 0;
-  transition: opacity ${({ theme }) => theme.transitions.duration.short}ms
-    ${({ theme }) => theme.transitions.easing.easeInOut};
-  margin-left: ${PIXEL_SIZE}px;
-  height: ${PIXEL_SIZE * 3}px;
-  width: ${PIXEL_SIZE * 3}px;
-`;
+const CopyIcon = styled(CopySmallSVG)(({ theme }) => ({
+  opacity: 0,
+  transition: `opacity ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+  marginLeft: `${PIXEL_SIZE}px`,
+  height: theme.spacing(3),
+  width: theme.spacing(3),
+}));
 
-const SocialLinkWrapper = styled.a`
-  ${({ theme }) => theme.typography.h2}
-  color: ${({ theme }) => theme.palette.text.primary};
-  display: inline-flex;
-  width: 100%;
-  justify-content: start;
-  transition: color ${({ theme }) => theme.transitions.duration.short}ms
-    ${({ theme }) => theme.transitions.easing.easeInOut};
+const SocialLinkWrapper = styled.a(({ theme }) => ({
+  ...theme.typography.h2,
+  color: theme.palette.text.primary,
+  display: "inline-flex",
+  width: "100%",
+  justifyContent: "start",
+  transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+  "&:hover": {
+    color: theme.palette.text.primary,
+    [`${PixelCardBorder}`]: {
+      background: `linear-gradient(180deg, ${theme.palette.border.gradient.from} 0%, ${theme.palette.border.gradient.from} 100%)`,
+    },
+  },
+  "&:focus": {
+    outline: "none",
+    [`${PixelCardBorder}`]: {
+      background: theme.palette.primary.dark,
+    },
+  },
+}));
 
-  &:hover {
-    color: ${({ theme }) => theme.palette.text.primary};
+const StyledPixelCard = styled(PixelCard)(({ theme }) => ({
+  width: "100%",
+  [`${PixelCardContent}`]: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: theme.spacing(18),
+  },
+}));
 
-    ${PixelCardBorder} {
-      background: linear-gradient(
-        180deg,
-        ${({ theme }) => theme.palette.border.gradient.from} 0%,
-        ${({ theme }) => theme.palette.border.gradient.from} 100%
-      );
-    }
-  }
+const StyledIcon = styled.i(({ theme }) => ({
+  marginLeft: theme.spacing(3),
+  marginRight: theme.spacing(3),
+  display: "inline-flex",
+}));
 
-  &:focus {
-    outline: none;
+const TextContainer = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  position: "relative",
+});
 
-    ${PixelCardBorder} {
-      background: ${({ theme }) => theme.palette.primary.dark};
-    }
-  }
-`;
+const Text = styled.p({
+  margin: 0,
+});
 
-const StyledPixelCard = styled(PixelCard)`
-  width: 100%;
-
-  ${PixelCardContent} {
-    flex-direction: row;
-    align-items: center;
-    height: ${PIXEL_SIZE * 18}px;
-  }
-`;
-
-const StyledIcon = styled.i`
-  margin-left: ${PIXEL_SIZE * 3}px;
-  margin-right: ${PIXEL_SIZE * 3}px;
-  display: inline-flex;
-`;
-
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-`;
-
-const Text = styled.p`
-  margin: 0;
-`;
-
-const SecondaryText = styled.p`
-  ${({ theme }) => theme.typography.body1}
-  margin: 0;
-  color: ${({ theme }) => theme.palette.text.secondary};
-  display: inline-flex;
-  align-items: center;
-  transition: color ${({ theme }) => theme.transitions.duration.short}ms
-    ${({ theme }) => theme.transitions.easing.easeInOut};
-
-  &:hover {
-    color: ${({ theme }) => theme.action.hover};
-    ${CopyIcon} {
-      opacity: 1;
-    }
-  }
-`;
+const SecondaryText = styled.p(({ theme }) => ({
+  ...theme.typography.body1,
+  margin: 0,
+  color: theme.palette.text.secondary,
+  display: "inline-flex",
+  alignItems: "center",
+  transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
+  "&:hover": {
+    color: theme.action.hover,
+    [`${CopyIcon}`]: {
+      opacity: 1,
+    },
+  },
+}));
 
 type SocialLinkProps = {
   href: string;
@@ -94,6 +81,7 @@ type SocialLinkProps = {
   text: string;
   secondaryText?: string;
 };
+
 function SocialLink({
   href,
   ariaLabel,
@@ -119,8 +107,7 @@ function SocialLink({
           {secondaryText && (
             <SecondaryText onClick={(e) => handleSecondaryTextClick(e)}>
               {secondaryText}
-
-              <CopyIcon color="#b6d6dd" />
+              <CopyIcon color={theme.palette.icon} />
             </SecondaryText>
           )}
         </TextContainer>

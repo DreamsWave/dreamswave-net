@@ -87,13 +87,6 @@ export type Theme = {
     disabled: string;
     focus: string;
   };
-  spacing: {
-    xs: number;
-    sm: number;
-    md: number;
-    lg: number;
-    xl: number;
-  };
   typography: {
     htmlFontSize: number;
     fontFamily: string;
@@ -173,6 +166,8 @@ export type Theme = {
     pixelCardContent: number;
     appBar: number;
   };
+  spacing: (factor: number) => string;
+  pixelSize: number;
 };
 
 export type Themes = {

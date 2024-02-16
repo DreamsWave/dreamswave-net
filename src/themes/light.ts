@@ -60,17 +60,10 @@ const theme: Theme = {
   },
   action: {
     active: "",
-    hover: primaryPalette.text.lightest,
+    hover: primaryPalette.text.light,
     selected: "",
     disabled: "",
     focus: primaryPalette.main,
-  },
-  spacing: {
-    xs: 5,
-    sm: 10,
-    md: 15,
-    lg: 20,
-    xl: 25,
   },
   typography: {
     htmlFontSize: 16,
@@ -151,6 +144,8 @@ const theme: Theme = {
     pixelCardContent: 24,
     appBar: 50,
   },
+  pixelSize: 4,
+  spacing: (factor: number) => `${factor * 4}px`,
 };
 
 export default theme;
