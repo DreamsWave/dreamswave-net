@@ -12,6 +12,21 @@ export type IconType =
 
 export type ThemeType = "dark" | "light";
 
+export type Palette = {
+  lightest: string;
+  light: string;
+  main: string;
+  dark: string;
+  darkest: string;
+  text: {
+    lightest: string;
+    light: string;
+    main: string;
+    dark: string;
+    darkest: string;
+  };
+};
+
 export type Theme = {
   breakpoints: {
     mobile: number;
@@ -19,12 +34,14 @@ export type Theme = {
   palette: {
     mode: ThemeType;
     primary: {
-      main: string;
+      lightest: string;
       light: string;
+      main: string;
       dark: string;
+      darkest: string;
       contrastText: string;
     };
-    secondary: {
+    secondary?: {
       main: string;
       light: string;
       dark: string;
@@ -54,11 +71,11 @@ export type Theme = {
       opacity?: number;
     };
     icon: string;
-  };
-  text: {
-    primary: string;
-    secondary: string;
-    disabled: string;
+    text: {
+      primary: string;
+      secondary: string;
+      disabled: string;
+    };
   };
   background: {
     default: string;
@@ -141,6 +158,12 @@ export type Theme = {
       short: number;
       standard: number;
       long: number;
+    };
+    easing: {
+      easeInOut: string;
+      easeOut: string;
+      easeIn: string;
+      sharp: string;
     };
   };
   zIndex: {

@@ -7,28 +7,30 @@ import { CopySmallSVG } from "./SVGIcons";
 
 const CopyIcon = styled(CopySmallSVG)`
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity ${({ theme }) => theme.transitions.duration.short}ms
+    ${({ theme }) => theme.transitions.easing.easeInOut};
   margin-left: ${PIXEL_SIZE}px;
   height: ${PIXEL_SIZE * 3}px;
   width: ${PIXEL_SIZE * 3}px;
 `;
 
 const SocialLinkWrapper = styled.a`
-  color: #445a73;
+  ${({ theme }) => theme.typography.h2}
+  color: ${({ theme }) => theme.palette.text.primary};
   display: inline-flex;
   width: 100%;
-  font-size: 1.2em;
   justify-content: start;
-  transition: color 0.2s ease-in-out;
+  transition: color ${({ theme }) => theme.transitions.duration.short}ms
+    ${({ theme }) => theme.transitions.easing.easeInOut};
 
   &:hover {
-    color: #445a73;
+    color: ${({ theme }) => theme.palette.text.primary};
 
     ${PixelCardBorder} {
       background: linear-gradient(
         180deg,
-        rgba(199, 224, 229, 1) 0%,
-        rgba(199, 224, 229, 1) 100%
+        ${({ theme }) => theme.palette.border.gradient.from} 0%,
+        ${({ theme }) => theme.palette.border.gradient.from} 100%
       );
     }
   }
@@ -37,7 +39,7 @@ const SocialLinkWrapper = styled.a`
     outline: none;
 
     ${PixelCardBorder} {
-      background: rgba(148, 181, 188, 1);
+      background: ${({ theme }) => theme.palette.primary.dark};
     }
   }
 `;
@@ -69,15 +71,16 @@ const Text = styled.p`
 `;
 
 const SecondaryText = styled.p`
+  ${({ theme }) => theme.typography.body1}
   margin: 0;
-  color: #6e96a6;
-  font-size: 0.8em;
+  color: ${({ theme }) => theme.palette.text.secondary};
   display: inline-flex;
   align-items: center;
-  transition: color 0.2s ease-in-out;
+  transition: color ${({ theme }) => theme.transitions.duration.short}ms
+    ${({ theme }) => theme.transitions.easing.easeInOut};
 
   &:hover {
-    color: #94b5bc;
+    color: ${({ theme }) => theme.action.hover};
     ${CopyIcon} {
       opacity: 1;
     }
