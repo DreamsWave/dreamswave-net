@@ -147,10 +147,18 @@ const theme: Theme = {
     pixelCardBorder: 25,
     pixelCardContent: 24,
     appBar: 50,
+    footer: 20,
   },
   pixelSize: 4,
   spacing: (factor: number) => `${factor * 4}px`,
   componentsGapFactor: 4,
+  iconSizeFactor: {
+    smallest: 3,
+    small: 5,
+    main: 10,
+    big: 15,
+    biggest: 20,
+  },
 };
 
 export default theme;

@@ -1,22 +1,23 @@
 import { useTheme } from "styled-components";
 import icons, { IconNames } from "../icons-svg.ts";
+import { Theme } from "../types.ts";
 
 type SVGProps = {
   className?: string;
   iconName: IconNames;
   fill?: string;
-  size?: number;
+  size?: keyof Theme["iconSizeFactor"];
 };
 
-function SVGIcon({ className, iconName, fill, size }: SVGProps) {
+function SVGIcon({ className, iconName, fill, size = "main" }: SVGProps) {
   const theme = useTheme();
   const icon = icons[iconName];
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size ? theme.spacing(size) : theme.spacing(10)}
-      height={size ? theme.spacing(size) : theme.spacing(10)}
+      width={theme.spacing(theme.iconSizeFactor[size])}
+      height={theme.spacing(theme.iconSizeFactor[size])}
       baseProfile="tiny"
       version="1.2"
       viewBox={`0 0 ${icon.width} ${icon.height}`}

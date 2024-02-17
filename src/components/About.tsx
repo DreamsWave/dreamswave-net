@@ -1,5 +1,5 @@
 import styled, { useTheme } from "styled-components";
-import PixelCard, { PixelCardContent } from "./PixelCard";
+import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
 import AvatarImage from "../assets/images/avatar.png";
 import { useEffect, useState } from "react";
 import { Theme } from "../types";
@@ -11,6 +11,16 @@ const AboutRoot = styled.div(({ theme }) => ({
   minWidth: `${theme.breakpoints.min}px`,
   width: `100%`,
   maxWidth: `${theme.breakpoints.max}px`,
+
+  [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
+    paddingTop: theme.spacing(
+      theme.componentsGapFactor + theme.iconSizeFactor.main
+    ),
+
+    [`${PixelCardBorder}`]: {
+      zIndex: theme.zIndex.pixelCardBorder - 1,
+    },
+  },
 
   [`${PixelCardContent}`]: {
     padding: theme.spacing(5),
@@ -57,8 +67,10 @@ const AboutHero = styled.div(({ theme }) => ({
   [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
     flexDirection: `column`,
     textAlign: `center`,
+    justifyContent: `center`,
+    width: `100%`,
     marginRight: 0,
-    marginTop: -theme.spacing(20),
+    marginTop: `-${theme.spacing(20)}`,
 
     [`${Avatar}`]: {
       marginRight: 0,
@@ -196,7 +208,11 @@ function About() {
             {languageType === "en" ? `Music enjoyer` : `Меломан`}
           </AboutDescriptionListItem>
           <AboutDescriptionListItem>
-            <SVGIcon iconName="alian" fill={theme.palette.icon.main} size={5} />
+            <SVGIcon
+              iconName="alian"
+              fill={theme.palette.icon.main}
+              size="small"
+            />
             {languageType === "en" ? `Gamer` : `Геймер`}
           </AboutDescriptionListItem>
         </AboutDescriptionList>

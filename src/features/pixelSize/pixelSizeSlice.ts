@@ -6,8 +6,12 @@ export type PixelSizeState = {
   availablePixelSizes: number[];
 };
 
+const initialPixelSize = localStorage.getItem("pixelSize")
+  ? Number(localStorage.getItem("pixelSize"))
+  : 4;
+
 const initialState: PixelSizeState = {
-  pixelSize: 4,
+  pixelSize: initialPixelSize,
   availablePixelSizes: [3, 4, 5],
 };
 
@@ -17,6 +21,7 @@ const pixelSizeSlice = createSlice({
   reducers: {
     setPixelSize: (state, action) => {
       state.pixelSize = action.payload;
+      localStorage.setItem("pixelSize", action.payload.toString());
     },
   },
 });

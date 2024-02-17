@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 import { selectTheme } from "../features/theme/themeSlice";
 import { createTheme } from "../themes";
 import { selectPixelSize } from "../features/pixelSize/pixelSizeSlice";
-import Copyright from "./Copyright";
 import AppBar from "./AppBar";
+import Footer from "./Footer";
 
 const AppWrapper = styled.div(() => ({
   minHeight: `100vh`,
@@ -19,9 +19,10 @@ const AppWrapper = styled.div(() => ({
   flexDirection: `column`,
 }));
 
-const Content = styled.main`
-  z-index: ${({ theme }) => theme.zIndex.mainContent};
-`;
+const Content = styled.main(({ theme }) => ({
+  zIndex: theme.zIndex.mainContent,
+  marginBottom: theme.spacing(theme.componentsGapFactor * 5),
+}));
 
 function App() {
   const [ref, bounds] = useMeasure();
@@ -49,7 +50,7 @@ function App() {
         <Content>
           <Socials />
         </Content>
-        <Copyright>dreamed by DreamsWave © 2024</Copyright>
+        <Footer />
         <Background mouseX={mouseX} mouseY={mouseY} />
       </AppWrapper>
     </ThemeProvider>

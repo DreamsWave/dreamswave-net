@@ -175,10 +175,18 @@ export type Theme = {
     pixelCardBorder: number;
     pixelCardContent: number;
     appBar: number;
+    footer: number;
   };
   spacing: (factor: number) => string;
   pixelSize: number;
   componentsGapFactor: number;
+  iconSizeFactor: {
+    smallest: number;
+    small: number;
+    main: number;
+    big: number;
+    biggest: number;
+  };
 };
 
 export type Themes = {

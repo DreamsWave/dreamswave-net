@@ -26,11 +26,13 @@ function LanguageSwitcher() {
     >
       {languageType === "en" ? (
         <SVGIcon
+          size="small"
           iconName="lang-en"
           fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
         />
       ) : (
         <SVGIcon
+          size="small"
           iconName="lang-ru"
           fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
         />

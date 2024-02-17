@@ -6,8 +6,22 @@ import LanguageSwitcher from "../features/language/LanguageSwitcher";
 const AppBarRoot = styled.header(({ theme }) => ({
   display: "flex",
   justifyContent: "flex-end",
-  padding: theme.spacing(theme.componentsGapFactor),
   zIndex: theme.zIndex.appBar,
+
+  [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
+    padding: theme.spacing(theme.componentsGapFactor - 2),
+  },
+}));
+
+const AppBarContainer = styled.div(({ theme }) => ({
+  minWidth: `${theme.breakpoints.min}px`,
+  maxWidth: `${theme.breakpoints.max}px`,
+  padding: `${theme.spacing(theme.componentsGapFactor)}`,
+  margin: `0 auto`,
+  width: `100%`,
+  display: "flex",
+  justifyContent: "flex-end",
+
   [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
     padding: theme.spacing(theme.componentsGapFactor - 2),
   },
@@ -21,11 +35,13 @@ const Controls = styled.div(({ theme }) => ({
 function AppBar() {
   return (
     <AppBarRoot>
-      <Controls>
-        <ThemeSwitcher />
-        <PixelSizeSwitcher />
-        <LanguageSwitcher />
-      </Controls>
+      <AppBarContainer>
+        <Controls>
+          <ThemeSwitcher />
+          <PixelSizeSwitcher />
+          <LanguageSwitcher />
+        </Controls>
+      </AppBarContainer>
     </AppBarRoot>
   );
 }

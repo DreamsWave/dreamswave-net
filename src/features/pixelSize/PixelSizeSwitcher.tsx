@@ -26,6 +26,7 @@ function PixelSizeSwitcher() {
       onMouseLeave={() => setIsMouseOver(false)}
     >
       <SVGIcon
+        size="small"
         iconName="pixel-size"
         fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
       />

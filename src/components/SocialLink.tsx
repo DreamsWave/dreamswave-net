@@ -24,6 +24,12 @@ const SocialLinkWrapper = styled.a(({ theme }) => ({
   },
 }));
 
+const StyledSVGIcon = styled(SVGIcon)(({ theme }) => ({
+  marginLeft: theme.spacing(3),
+  marginRight: theme.spacing(3),
+  display: "inline-flex",
+}));
+
 const StyledPixelCard = styled(PixelCard)(({ theme }) => ({
   width: "100%",
   [`${PixelCardContent}`]: {
@@ -31,12 +37,6 @@ const StyledPixelCard = styled(PixelCard)(({ theme }) => ({
     alignItems: "center",
     height: theme.spacing(18),
   },
-}));
-
-const StyledSVGIcon = styled(SVGIcon)(({ theme }) => ({
-  marginLeft: theme.spacing(3),
-  marginRight: theme.spacing(3),
-  display: "inline-flex",
 }));
 
 const StyledCopySmallSVGIcon = styled(SVGIcon)(({ theme }) => ({
@@ -103,7 +103,7 @@ function SocialLink({
               {secondaryText}
               <StyledCopySmallSVGIcon
                 iconName="copy-small"
-                size={3}
+                size="smallest"
                 fill={theme.palette.primary.main}
               />
             </SecondaryText>

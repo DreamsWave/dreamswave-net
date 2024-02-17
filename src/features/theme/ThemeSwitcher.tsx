@@ -26,11 +26,13 @@ function ThemeSwitcher() {
     >
       {themeType === "dark" ? (
         <SVGIcon
+          size="small"
           iconName="sun"
           fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
         />
       ) : (
         <SVGIcon
+          size="small"
           iconName="moon"
           fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
         />

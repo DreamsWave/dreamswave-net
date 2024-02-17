@@ -16,7 +16,8 @@ export type IconNames =
   | "alian"
   | "pixel-size"
   | "lang-en"
-  | "lang-ru";
+  | "lang-ru"
+  | "copyright";
 
 export type Icons = Record<
   IconNames,
@@ -148,6 +149,13 @@ const icons: Icons = {
     ],
     width: 8,
     height: 5,
+  },
+  copyright: {
+    paths: [
+      "M3 0h4v1H3zM2 1h1v1H2zM7 1h1v1H7zM1 2h1v1H1zM8 2h1v1H8zM0 3h1v4H0zM4 3h2v1H4zM9 3h1v4H9zM3 4h1v2H3zM4 6h2v1H4zM1 7h1v1H1zM8 7h1v1H8zM2 8h1v1H2zM7 8h1v1H7zM3 9h4v1H3z",
+    ],
+    width: 10,
+    height: 10,
   },
 };
 
