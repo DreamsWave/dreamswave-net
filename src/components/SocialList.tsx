@@ -2,15 +2,16 @@ import styled from "styled-components";
 import SocialLink from "./SocialLink";
 
 const SocialListRoot = styled.div(({ theme }) => ({
-  minWidth: "340px",
+  minWidth: `${theme.breakpoints.min}px`,
   width: "100%",
-  maxWidth: "800px",
+  maxWidth: `${theme.breakpoints.max}px`,
   position: "relative",
   display: "grid",
   gridTemplateColumns: "repeat(2, 1fr)",
-  gap: theme.spacing(5),
+  gap: theme.spacing(theme.componentsGapFactor),
   [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
     gridTemplateColumns: "1fr",
+    gap: theme.spacing(theme.componentsGapFactor - 2),
   },
 }));
 

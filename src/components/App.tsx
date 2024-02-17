@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 import { selectTheme } from "../features/theme/themeSlice";
 import { createTheme } from "../themes";
 import { selectPixelSize } from "../features/pixelSize/pixelSizeSlice";
-import Controls from "./Controls";
 import Copyright from "./Copyright";
+import AppBar from "./AppBar";
 
 const AppWrapper = styled.div(() => ({
   minHeight: `100vh`,
@@ -45,7 +45,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper ref={ref} onMouseMove={updateMouse}>
-        <Controls />
+        <AppBar />
         <Content>
           <Socials />
         </Content>

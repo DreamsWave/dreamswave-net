@@ -1,45 +1,46 @@
 import styled, { useTheme } from "styled-components";
 import PixelCard, { PixelCardContent } from "./PixelCard";
 import AvatarImage from "../assets/images/avatar.png";
-import { PIXEL_SIZE } from "../constants";
 import { useEffect, useState } from "react";
 import { Theme } from "../types";
 import SVGIcon from "./SVGIcon";
 import { useAppSelector } from "../hooks";
 import { selectLanguage } from "../features/language/languageSlice";
 
-const AboutRoot = styled.div`
-  min-width: 340px;
-  width: 100%;
-  max-width: 800px;
+const AboutRoot = styled.div(({ theme }) => ({
+  minWidth: `${theme.breakpoints.min}px`,
+  width: `100%`,
+  maxWidth: `${theme.breakpoints.max}px`,
 
-  ${PixelCardContent} {
-    padding: ${PIXEL_SIZE * 5}px;
-    align-items: center;
-    flex-direction: row;
+  [`${PixelCardContent}`]: {
+    padding: theme.spacing(5),
+    alignItems: `center`,
+    flexDirection: `row`,
 
-    @media (max-width: 660px) {
-      flex-direction: column;
-      margin-top: ${PIXEL_SIZE * 16}px;
-    }
-  }
-`;
+    [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
+      flexDirection: `column`,
+    },
+  },
+}));
 
-const Avatar = styled.div<{ size: number }>`
-  height: ${({ size }) => size}px;
-  width: ${({ size }) => size}px;
-  position: relative;
-  margin-right: ${PIXEL_SIZE * 5}px;
-`;
-const AvatarImg = styled.img<{ $backgroundColor: string }>`
-  height: calc(100% - 6px);
-  width: calc(100% - 6px);
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  border-radius: 50%;
-  background: ${({ $backgroundColor }) => $backgroundColor};
-`;
+const Avatar = styled.div<{ $size: string }>(({ theme, $size }) => ({
+  height: $size,
+  width: $size,
+  position: `relative`,
+  marginRight: theme.spacing(5),
+}));
+
+const AvatarImg = styled.img<{ $backgroundColor: string }>(
+  ({ $backgroundColor }) => ({
+    height: `calc(100% - 6px)`,
+    width: `calc(100% - 6px)`,
+    position: `absolute`,
+    top: `3px`,
+    left: `3px`,
+    borderRadius: `50%`,
+    background: $backgroundColor,
+  })
+);
 const AvatarBorder = styled.svg`
   z-index: 66;
   position: absolute;
@@ -47,79 +48,81 @@ const AvatarBorder = styled.svg`
   left: 0;
 `;
 
-const AboutHero = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: ${PIXEL_SIZE * 5}px;
-  text-align: start;
+const AboutHero = styled.div(({ theme }) => ({
+  display: `flex`,
+  alignItems: `center`,
+  marginRight: theme.spacing(5),
+  textAlign: `start`,
 
-  @media (max-width: 660px) {
-    flex-direction: column;
-    text-align: center;
-    margin-right: 0;
-    margin-top: -${PIXEL_SIZE * 20}px;
+  [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
+    flexDirection: `column`,
+    textAlign: `center`,
+    marginRight: 0,
+    marginTop: -theme.spacing(20),
 
-    ${Avatar} {
-      margin-right: 0;
-      margin-bottom: ${PIXEL_SIZE * 3}px;
-    }
-  }
-`;
+    [`${Avatar}`]: {
+      marginRight: 0,
+      marginBottom: theme.spacing(3),
+    },
+  },
+}));
 
 const AboutNames = styled.div`
   line-height: 1;
 `;
 
-const AboutName = styled.h1`
-  color: #445a73;
-  font-size: 1.8rem;
-  font-weight: 400;
-  margin: 0;
-  margin-bottom: ${PIXEL_SIZE * 1}px;
-  text-wrap: nowrap;
-`;
-const AboutNickname = styled.h2`
-  color: #6e96a6;
-  font-size: 1.2rem;
-  font-weight: 400;
-  margin: 0;
-`;
+const AboutName = styled.h1(({ theme }) => ({
+  ...theme.typography.h1,
+  color: theme.palette.text.darkest,
+  margin: 0,
+  marginBottom: theme.spacing(1),
+  textWrap: `nowrap`,
+}));
 
-const AboutDescriptionList = styled.ul`
-  color: #94b5bc;
-  font-size: 1em;
-  margin: 0;
-  list-style: none;
-  padding: 0;
-  margin-left: auto;
-  text-align: end;
+const AboutNickname = styled.h2(({ theme }) => ({
+  ...theme.typography.h2,
+  color: theme.palette.text.main,
+  margin: 0,
+}));
 
-  @media (max-width: 660px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 20px;
-    width: 100%;
-    justify-items: center;
-    margin-top: 20px;
-    margin-left: 0;
-  }
-`;
+const AboutDescriptionList = styled.ul(({ theme }) => ({
+  ...theme.typography.body1,
+  color: theme.palette.text.light,
+  margin: 0,
+  listStyle: `none`,
+  padding: 0,
+  marginLeft: `auto`,
+  textAlign: `end`,
+  display: `flex`,
+  flexDirection: `column`,
+
+  [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
+    alignItems: `center`,
+    gap: `0 ${theme.spacing(5)}`,
+    width: `100%`,
+    justifyItems: `center`,
+    marginTop: theme.spacing(5),
+    marginLeft: 0,
+  },
+}));
 
 const AboutDescriptionListItem = styled.li`
   align-items: center;
   display: flex;
   justify-content: end;
-  gap: 5px;
+  gap: ${({ theme }) => theme.spacing(1)};
 `;
 
 function About() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 660);
   const theme: Theme = useTheme();
+  const [isMobile, setIsMobile] = useState(
+    window.innerWidth <= theme.breakpoints.mobile
+  );
   const { languageType } = useAppSelector(selectLanguage);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 660);
+      setIsMobile(window.innerWidth <= theme.breakpoints.mobile);
     };
 
     window.addEventListener("resize", handleResize);
@@ -127,14 +130,14 @@ function About() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [theme.breakpoints.mobile]);
 
   return (
     <AboutRoot>
       <PixelCard>
         <AboutHero>
           {isMobile ? (
-            <Avatar size={PIXEL_SIZE * 30}>
+            <Avatar $size={theme.spacing(30)}>
               <AvatarImg
                 src={AvatarImage}
                 $backgroundColor={theme.palette.border.color}
@@ -142,8 +145,8 @@ function About() {
 
               <AvatarBorder
                 xmlns="http://www.w3.org/2000/svg"
-                width={PIXEL_SIZE * 30}
-                height={PIXEL_SIZE * 30}
+                width={theme.spacing(30)}
+                height={theme.spacing(30)}
                 baseProfile="tiny"
                 version="1.2"
                 viewBox="0 0 30 30"
@@ -154,15 +157,15 @@ function About() {
               </AvatarBorder>
             </Avatar>
           ) : (
-            <Avatar size={PIXEL_SIZE * 20}>
+            <Avatar $size={theme.spacing(20)}>
               <AvatarImg
                 src={AvatarImage}
                 $backgroundColor={theme.palette.border.color}
               />
               <AvatarBorder
                 xmlns="http://www.w3.org/2000/svg"
-                width={PIXEL_SIZE * 20}
-                height={PIXEL_SIZE * 20}
+                width={theme.spacing(20)}
+                height={theme.spacing(20)}
                 baseProfile="tiny"
                 version="1.2"
                 viewBox="0 0 20 20"

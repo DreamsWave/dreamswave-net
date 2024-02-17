@@ -6,7 +6,7 @@ const Copyright = styled.span(({ theme }) => ({
   right: `10px`,
   bottom: `10px`,
   zIndex: theme.zIndex.mainContent,
-  color: theme.palette.text.secondary,
+  color: theme.palette.text.main,
 }));
 
 export default Copyright;

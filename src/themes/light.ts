@@ -18,7 +18,9 @@ const primaryPalette: Palette = {
 
 const theme: Theme = {
   breakpoints: {
+    min: 340,
     mobile: 660,
+    max: 800,
   },
   palette: {
     mode: "light",
@@ -54,9 +56,7 @@ const theme: Theme = {
       dark: primaryPalette.dark,
     },
     text: {
-      primary: primaryPalette.text.dark,
-      secondary: primaryPalette.text.main,
-      disabled: primaryPalette.text.light,
+      ...primaryPalette.text,
     },
   },
   background: {
@@ -150,6 +150,7 @@ const theme: Theme = {
   },
   pixelSize: 4,
   spacing: (factor: number) => `${factor * 4}px`,
+  componentsGapFactor: 4,
 };
 
 export default theme;

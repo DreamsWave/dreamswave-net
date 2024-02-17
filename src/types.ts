@@ -31,7 +31,9 @@ export type Palette = {
 
 export type Theme = {
   breakpoints: {
+    min: number;
     mobile: number;
+    max: number;
   };
   palette: {
     mode: ThemeType;
@@ -78,9 +80,11 @@ export type Theme = {
       dark: string;
     };
     text: {
-      primary: string;
-      secondary: string;
-      disabled: string;
+      lightest: string;
+      light: string;
+      main: string;
+      dark: string;
+      darkest: string;
     };
   };
   background: {
@@ -174,6 +178,7 @@ export type Theme = {
   };
   spacing: (factor: number) => string;
   pixelSize: number;
+  componentsGapFactor: number;
 };
 
 export type Themes = {

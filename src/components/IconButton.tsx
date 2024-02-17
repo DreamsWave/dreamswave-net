@@ -3,7 +3,7 @@ import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
 import theme from "../themes/light";
 
 const IconButtonRoot = styled.button(({ theme }) => ({
-  color: theme.palette.text.primary,
+  color: theme.palette.text.main,
   background: `transparent`,
   cursor: `pointer`,
   outline: `none`,

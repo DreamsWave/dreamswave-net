@@ -5,13 +5,13 @@ import { IconNames } from "../icons-svg";
 
 const SocialLinkWrapper = styled.a(({ theme }) => ({
   ...theme.typography.h2,
-  color: theme.palette.text.primary,
+  color: theme.palette.text.dark,
   display: "inline-flex",
   width: "100%",
   justifyContent: "start",
   transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
   "&:hover": {
-    color: theme.palette.text.primary,
+    color: theme.palette.text.dark,
     [`${PixelCardBorder}`]: {
       background: `linear-gradient(180deg, ${theme.palette.border.gradient.from} 0%, ${theme.palette.border.gradient.from} 100%)`,
     },
@@ -58,7 +58,7 @@ const Text = styled.p({
 const SecondaryText = styled.p(({ theme }) => ({
   ...theme.typography.body1,
   margin: 0,
-  color: theme.palette.text.secondary,
+  color: theme.palette.text.main,
   display: "inline-flex",
   alignItems: "center",
   transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,

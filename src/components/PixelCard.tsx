@@ -39,8 +39,9 @@ const RightBorder = styled(PixelCardBorder)(({ theme }) => ({
   background: `linear-gradient(180deg, ${theme.palette.border.gradient.from} 0%, ${theme.palette.border.gradient.to} 100%)`,
 }));
 
-const PixelCardWrapper = styled.div`
+const PixelCardRoot = styled.div`
   position: relative;
+  display: flex;
 `;
 
 export const PixelCardContent = styled.div(({ theme }) => ({
@@ -65,7 +66,7 @@ function PixelCard({
   contentClassName?: string;
 }) {
   return (
-    <PixelCardWrapper className={className}>
+    <PixelCardRoot className={className}>
       <TopBorder />
       <RightBorder />
       <BottomBorder />
@@ -73,7 +74,7 @@ function PixelCard({
       <PixelCardContent className={contentClassName}>
         {children}
       </PixelCardContent>
-    </PixelCardWrapper>
+    </PixelCardRoot>
   );
 }
 
