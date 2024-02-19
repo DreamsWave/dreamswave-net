@@ -1,11 +1,12 @@
 import styled, { useTheme } from "styled-components";
-import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
+import PixelCard, { PixelCardContent } from "./PixelCard";
 import AvatarImage from "../assets/images/avatar.png";
 import { useEffect, useState } from "react";
 import { Theme } from "../types";
 import SVGIcon from "./SVGIcon";
 import { useAppSelector } from "../hooks";
 import { selectLanguage } from "../features/language/languageSlice";
+import { Border } from "./PixelBorders";
 
 const AboutRoot = styled.div(({ theme }) => ({
   minWidth: `${theme.breakpoints.min}px`,
@@ -17,7 +18,7 @@ const AboutRoot = styled.div(({ theme }) => ({
       theme.componentsGapFactor + theme.iconSizeFactor.main
     ),
 
-    [`${PixelCardBorder}`]: {
+    [`${Border}`]: {
       zIndex: theme.zIndex.pixelCardBorder - 1,
     },
   },

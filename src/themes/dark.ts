@@ -8,11 +8,11 @@ const primaryPalette: Palette = {
   dark: "#3b5170",
   darkest: "#2e3e58",
   text: {
-    lightest: "#ffffff",
-    light: "#ffffff",
-    main: "#ffffff",
-    dark: "#ffffff",
-    darkest: "#ffffff",
+    lightest: "#d7e8ea",
+    light: "#b6d6dd",
+    main: "#6e96a6",
+    dark: "#466a8b",
+    darkest: "#415b7c",
   },
 };
 
@@ -23,7 +23,7 @@ const theme: Theme = {
     max: 800,
   },
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
       ...primaryPalette,
       contrastText: "#ffffff",
@@ -40,20 +40,22 @@ const theme: Theme = {
       },
     },
     border: {
-      color: primaryPalette.light,
+      color: primaryPalette.main,
       gradient: {
-        from: primaryPalette.light,
-        to: primaryPalette.lightest,
+        from: primaryPalette.main,
+        to: primaryPalette.dark,
       },
+      focus: primaryPalette.lightest,
+      hover: primaryPalette.main,
     },
     gradient: {
-      from: hexToRgba(primaryPalette.light, 0.5),
-      to: hexToRgba(primaryPalette.lightest, 0.5),
+      from: hexToRgba(primaryPalette.main, 0.5),
+      to: hexToRgba(primaryPalette.dark, 0.5),
     },
     icon: {
       light: primaryPalette.text.light,
-      main: primaryPalette.text.light,
-      dark: primaryPalette.text.light,
+      main: primaryPalette.text.main,
+      dark: primaryPalette.text.dark,
     },
     text: {
       ...primaryPalette.text,
@@ -67,7 +69,7 @@ const theme: Theme = {
     hover: primaryPalette.text.light,
     selected: "",
     disabled: "",
-    focus: primaryPalette.dark,
+    focus: primaryPalette.text.lightest,
   },
   typography: {
     htmlFontSize: 16,

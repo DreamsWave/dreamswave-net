@@ -45,6 +45,8 @@ const theme: Theme = {
         from: primaryPalette.light,
         to: primaryPalette.lightest,
       },
+      focus: primaryPalette.dark,
+      hover: primaryPalette.light,
     },
     gradient: {
       from: hexToRgba(primaryPalette.light, 0.5),

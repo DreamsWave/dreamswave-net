@@ -68,6 +68,8 @@ export type Theme = {
         from: string;
         to: string;
       };
+      focus: string;
+      hover: string;
     };
     gradient: {
       from: string;

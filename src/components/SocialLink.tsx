@@ -1,7 +1,8 @@
 import styled, { useTheme } from "styled-components";
-import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
+import PixelCard, { PixelCardContent } from "./PixelCard";
 import SVGIcon from "./SVGIcon";
 import { IconNames } from "../icons-svg";
+import { useState } from "react";
 
 const SocialLinkWrapper = styled.a(({ theme }) => ({
   ...theme.typography.h2,
@@ -12,15 +13,9 @@ const SocialLinkWrapper = styled.a(({ theme }) => ({
   transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
   "&:hover": {
     color: theme.palette.text.dark,
-    [`${PixelCardBorder}`]: {
-      background: `linear-gradient(180deg, ${theme.palette.border.gradient.from} 0%, ${theme.palette.border.gradient.from} 100%)`,
-    },
   },
   "&:focus": {
     outline: "none",
-    [`${PixelCardBorder}`]: {
-      background: theme.action.focus,
-    },
   },
 }));
 
@@ -85,6 +80,8 @@ function SocialLink({
   text,
   secondaryText,
 }: SocialLinkProps) {
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const theme = useTheme();
   const handleSecondaryTextClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -93,8 +90,16 @@ function SocialLink({
   };
 
   return (
-    <SocialLinkWrapper href={href} aria-label={ariaLabel} target="_blank">
-      <StyledPixelCard>
+    <SocialLinkWrapper
+      href={href}
+      aria-label={ariaLabel}
+      target="_blank"
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <StyledPixelCard bordersFocus={isFocused} bordersHover={isHovered}>
         <StyledSVGIcon iconName={icon} />
         <TextContainer>
           <Text>{text}</Text>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import PixelCard, { PixelCardBorder, PixelCardContent } from "./PixelCard";
+import PixelCard, { PixelCardContent } from "./PixelCard";
 import theme from "../themes/light";
+import { useState } from "react";
 
 const IconButtonRoot = styled.button(({ theme }) => ({
   color: theme.palette.text.main,
@@ -19,9 +20,6 @@ const IconButtonRoot = styled.button(({ theme }) => ({
 
   "&:focus-visible": {
     outline: "none",
-    [`${PixelCardBorder}`]: {
-      background: theme.action.focus,
-    },
   },
 }));
 
@@ -43,9 +41,20 @@ type IconButtonProps = {
   onMouseLeave?: () => void;
 };
 const IconButton = ({ children, className, ...rest }: IconButtonProps) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   return (
-    <IconButtonRoot {...rest} className={className}>
-      <StyledPixelCard>{children}</StyledPixelCard>
+    <IconButtonRoot
+      {...rest}
+      className={className}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <StyledPixelCard bordersFocus={isFocused} bordersHover={isHovered}>
+        {children}
+      </StyledPixelCard>
     </IconButtonRoot>
   );
 };
