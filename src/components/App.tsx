@@ -1,10 +1,10 @@
 import "../App.css";
-import Background from "./Background";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 import styled, { ThemeProvider } from "styled-components";
-import Socials from "./Socials";
 import { useSelector } from "react-redux";
+import Background from "./Background";
+import Socials from "./Socials";
 import { selectTheme } from "../features/theme/themeSlice";
 import { createTheme } from "../themes";
 import { selectPixelSize } from "../features/pixelSize/pixelSizeSlice";
@@ -34,8 +34,13 @@ function App() {
 
   const updateMouse = (e: React.MouseEvent) => {
     if (!window.matchMedia("only screen and (max-width: 660px)").matches) {
-      setMouseX(e.clientX - bounds.x - bounds.width / 2);
-      setMouseY(e.clientY - bounds.y - bounds.height / 2);
+      const newMouseX = Math.round(e.clientX - bounds.x - bounds.width / 2);
+      const newMouseY = Math.round(e.clientY - bounds.y - bounds.height / 2);
+
+      if (newMouseX !== mouseX || newMouseY !== mouseY) {
+        setMouseX(newMouseX);
+        setMouseY(newMouseY);
+      }
     }
   };
 

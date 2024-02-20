@@ -1,4 +1,4 @@
-import { useSpring, animated } from "@react-spring/web";
+import { useSpring, animated, config } from "@react-spring/web";
 import styled, { useTheme } from "styled-components";
 import {
   BackgroundSVG,
@@ -9,6 +9,7 @@ import {
   StarsSVG,
 } from "./SVGBackground";
 import { Theme } from "../types";
+import { useEffect } from "react";
 
 const BackgroundWrapper = styled(animated.div)<{ $backgroundColor: string }>`
   --background-color: ${({ $backgroundColor }) => $backgroundColor};
@@ -41,25 +42,46 @@ type BackgroundProps = {
   mouseX: number;
   mouseY: number;
 };
+
 function Background({ mouseX, mouseY }: BackgroundProps) {
   const theme: Theme = useTheme();
 
-  const parallaxLevel1 = useSpring({
-    x: -(mouseX / 80),
-    y: -(mouseY / 20),
-  });
-  const parallaxLevel2 = useSpring({
-    x: -(mouseX / 120),
-    y: -(mouseY / 30),
-  });
-  const parallaxLevel3 = useSpring({
-    x: -(mouseX / 160),
-    y: -(mouseY / 40),
-  });
-  const parallaxLevel4 = useSpring({
-    x: -(mouseX / 400),
-    y: -(mouseY / 100),
-  });
+  const [{ x1, y1 }, api1] = useSpring(() => ({
+    x1: 0,
+    y1: 0,
+    config: config.gentle,
+  }));
+  const [{ x2, y2 }, api2] = useSpring(() => ({
+    x2: 0,
+    y2: 0,
+    config: config.gentle,
+  }));
+  const [{ x3, y3 }, api3] = useSpring(() => ({
+    x3: 0,
+    y3: 0,
+    config: config.gentle,
+  }));
+  const [{ x4, y4 }, api4] = useSpring(() => ({
+    x4: 0,
+    y4: 0,
+    config: config.gentle,
+  }));
+
+  useEffect(() => {
+    api1.start({ x1: Math.round(mouseX / 80), y1: Math.round(mouseY / 20) });
+    api2.start({ x2: Math.round(mouseX / 120), y2: Math.round(mouseY / 30) });
+    api3.start({ x3: Math.round(mouseX / 160), y3: Math.round(mouseY / 40) });
+    api4.start({ x4: Math.round(mouseX / 400), y4: Math.round(mouseY / 100) });
+  }, [mouseX, mouseY, api1, api2, api3, api4]);
+
+  const transX1 = x1.to((val) => -Math.round(val));
+  const transY1 = y1.to((val) => -Math.round(val));
+  const transX2 = x2.to((val) => -Math.round(val));
+  const transY2 = y2.to((val) => -Math.round(val));
+  const transX3 = x3.to((val) => -Math.round(val));
+  const transY3 = y3.to((val) => -Math.round(val));
+  const transX4 = x4.to((val) => -Math.round(val));
+  const transY4 = y4.to((val) => -Math.round(val));
 
   return (
     <BackgroundWrapper $backgroundColor={theme.palette.background.main}>
@@ -69,16 +91,16 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
       <Layer>
         <StarsSVG color={theme.palette.background.layers.stars} />
       </Layer>
-      <Layer style={{ ...parallaxLevel4 }}>
+      <Layer style={{ x: transX4, y: transY4 }}>
         <CloudBackSVG color={theme.palette.background.layers.cloudBack} />
       </Layer>
-      <Layer style={{ ...parallaxLevel3 }}>
+      <Layer style={{ x: transX3, y: transY3 }}>
         <CloudMiddleSVG color={theme.palette.background.layers.cloudMiddle} />
       </Layer>
-      <Layer style={{ ...parallaxLevel2 }}>
+      <Layer style={{ x: transX2, y: transY2 }}>
         <CloudRightSVG color={theme.palette.background.layers.cloudRight} />
       </Layer>
-      <Layer style={{ ...parallaxLevel1 }}>
+      <Layer style={{ x: transX1, y: transY1 }}>
         <CloudLeftSVG color={theme.palette.background.layers.cloudLeft} />
       </Layer>
     </BackgroundWrapper>
