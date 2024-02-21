@@ -56,6 +56,7 @@ const theme: Theme = {
       light: primaryPalette.light,
       main: primaryPalette.main,
       dark: primaryPalette.dark,
+      active: primaryPalette.dark,
     },
     text: {
       ...primaryPalette.text,

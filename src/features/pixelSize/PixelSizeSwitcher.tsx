@@ -1,16 +1,11 @@
-import { useTheme } from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useState } from "react";
 import { selectPixelSize, setPixelSize } from "./pixelSizeSlice";
-import { Theme } from "../../types";
 import IconButton from "../../components/IconButton";
-import SVGIcon from "../../components/SVGIcon";
+import PixelSizeIcon from "../../components/PixelSizeIcon";
 
 function PixelSizeSwitcher() {
   const { pixelSize, availablePixelSizes } = useAppSelector(selectPixelSize);
   const dispatch = useAppDispatch();
-  const theme: Theme = useTheme();
-  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   const switchPixelSize = async () => {
     const currentIndex = availablePixelSizes.indexOf(pixelSize);
@@ -20,16 +15,8 @@ function PixelSizeSwitcher() {
   };
 
   return (
-    <IconButton
-      onClick={() => switchPixelSize()}
-      onMouseEnter={() => setIsMouseOver(true)}
-      onMouseLeave={() => setIsMouseOver(false)}
-    >
-      <SVGIcon
-        size="small"
-        iconName="pixel-size"
-        fill={isMouseOver ? theme.palette.icon.dark : theme.palette.icon.main}
-      />
+    <IconButton onClick={() => switchPixelSize()}>
+      <PixelSizeIcon size="small" />
     </IconButton>
   );
 }

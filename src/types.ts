@@ -80,6 +80,7 @@ export type Theme = {
       light: string;
       main: string;
       dark: string;
+      active: string;
     };
     text: {
       lightest: string;
