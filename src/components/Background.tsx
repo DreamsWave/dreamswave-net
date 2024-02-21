@@ -11,7 +11,7 @@ import {
 import { Theme } from "../types";
 import { useEffect } from "react";
 
-const BackgroundWrapper = styled(animated.div)<{ $backgroundColor: string }>`
+const BackgroundRoot = styled(animated.div)<{ $backgroundColor: string }>`
   --background-color: ${({ $backgroundColor }) => $backgroundColor};
 
   width: 100%;
@@ -84,26 +84,26 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
   const transY4 = y4.to((val) => -Math.round(val));
 
   return (
-    <BackgroundWrapper $backgroundColor={theme.palette.background.main}>
+    <BackgroundRoot $backgroundColor={theme.palette.background.main}>
       <Layer>
-        <BackgroundSVG color={theme.palette.background.layers.mainBg} />
+        <BackgroundSVG />
       </Layer>
       <Layer>
-        <StarsSVG color={theme.palette.background.layers.stars} />
+        <StarsSVG />
       </Layer>
       <Layer style={{ x: transX4, y: transY4 }}>
-        <CloudBackSVG color={theme.palette.background.layers.cloudBack} />
+        <CloudBackSVG />
       </Layer>
       <Layer style={{ x: transX3, y: transY3 }}>
-        <CloudMiddleSVG color={theme.palette.background.layers.cloudMiddle} />
+        <CloudMiddleSVG />
       </Layer>
       <Layer style={{ x: transX2, y: transY2 }}>
-        <CloudRightSVG color={theme.palette.background.layers.cloudRight} />
+        <CloudRightSVG />
       </Layer>
       <Layer style={{ x: transX1, y: transY1 }}>
-        <CloudLeftSVG color={theme.palette.background.layers.cloudLeft} />
+        <CloudLeftSVG />
       </Layer>
-    </BackgroundWrapper>
+    </BackgroundRoot>
   );
 }
 

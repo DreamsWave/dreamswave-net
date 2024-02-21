@@ -57,6 +57,7 @@ const createBorder = (
   const commonStyles = {
     width: theme.spacing(1),
     height: `calc(100% - ${theme.spacing(2)})`,
+    transition: "background 0.3s ease-in-out",
   };
 
   let background;

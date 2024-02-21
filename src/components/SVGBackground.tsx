@@ -1,4 +1,6 @@
+import { animated, useSpring } from "@react-spring/web";
 import { PIXEL_SIZE } from "../constants";
+import { useTheme } from "styled-components";
 
 type SVGProps = {
   color?: string;
@@ -8,13 +10,18 @@ type SVGProps = {
 };
 
 export const CloudBackSVG = ({
-  color = "#d9eaed",
+  color,
   className,
   height = 180,
   width = 320,
 }: SVGProps) => {
+  const theme = useTheme();
+  const fillTransition = useSpring({
+    fill: color || theme.palette.background.layers.cloudBack,
+  });
+
   return (
-    <svg
+    <animated.svg
       xmlns="http://www.w3.org/2000/svg"
       height={height ? height : PIXEL_SIZE * 180}
       width={width ? width : PIXEL_SIZE * 320}
@@ -24,7 +31,7 @@ export const CloudBackSVG = ({
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g fill={color}>
+      <animated.g style={fillTransition}>
         <path d="M67 106h3v74h-3z" />
         <path d="M65 107h8v73h-8z" />
         <path d="M64 108h11v72H64zM43 109h4v71h-4z" />
@@ -45,19 +52,23 @@ export const CloudBackSVG = ({
         <path d="M0 124h320v26H0zM145 150h175v30H145z" />
         <path d="M1 151h319v29H1z" />
         <path d="M0 152h320v28H0z" />
-      </g>
-    </svg>
+      </animated.g>
+    </animated.svg>
   );
 };
 
 export const CloudLeftSVG = ({
-  color = "#c7e0e5",
+  color,
   className,
   height = 180,
   width = 320,
 }: SVGProps) => {
+  const theme = useTheme();
+  const fillTransition = useSpring({
+    fill: color || theme.palette.background.layers.cloudLeft,
+  });
   return (
-    <svg
+    <animated.svg
       xmlns="http://www.w3.org/2000/svg"
       height={height ? height : PIXEL_SIZE * 180}
       width={width ? width : PIXEL_SIZE * 320}
@@ -67,7 +78,7 @@ export const CloudLeftSVG = ({
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g fill={color}>
+      <animated.g style={fillTransition}>
         <path d="M4 130h6v50H4z" />
         <path d="M2 131h10v49H2z" />
         <path d="M0 132h13v48H0zM13 133h1v47h-1zM14 134h1v46h-1zM32 135h8v45h-8zM43 135h6v45h-6zM15 136h1v44h-1z" />
@@ -88,17 +99,21 @@ export const CloudLeftSVG = ({
         <path d="M132 159h16v21h-16z" />
         <path d="M130 160h18v20h-18z" />
         <path d="M128 161h21v19h-21zM149 162h1v18h-1zM150 163h1v17h-1zM151 165h2v15h-2zM153 166h2v14h-2zM155 167h2v13h-2zM157 168h1v12h-1zM158 169h1v11h-1zM159 171h1v9h-1zM160 172h1v8h-1zM161 173h1v7h-1zM162 174h1v6h-1zM163 176h1v4h-1zM164 178h3v2h-3zM167 179h2v1h-2z" />
-      </g>
-    </svg>
+      </animated.g>
+    </animated.svg>
   );
 };
 
 export const CloudMiddleSVG = ({
-  color = "#d2e6e9",
+  color,
   className,
   height = 180,
   width = 320,
 }: SVGProps) => {
+  const theme = useTheme();
+  const fillTransition = useSpring({
+    fill: color || theme.palette.background.layers.cloudMiddle,
+  });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +125,7 @@ export const CloudMiddleSVG = ({
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g fill={color}>
+      <animated.g style={fillTransition}>
         <path d="M158 130h4v50h-4z" />
         <path d="M156 131h8v49h-8z" />
         <path d="M154 132h11v48h-11z" />
@@ -147,17 +162,21 @@ export const CloudMiddleSVG = ({
         <path d="M53 172h199v8H53z" />
         <path d="M52 173h209v7H52z" />
         <path d="M51 174h212v6H51zM263 175h1v5h-1zM264 176h1v4h-1zM265 177h1v3h-1z" />
-      </g>
+      </animated.g>
     </svg>
   );
 };
 
 export const CloudRightSVG = ({
-  color = "#cbe3e6",
+  color,
   className,
   height = 180,
   width = 320,
 }: SVGProps) => {
+  const theme = useTheme();
+  const fillTransition = useSpring({
+    fill: color || theme.palette.background.layers.cloudRight,
+  });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +188,7 @@ export const CloudRightSVG = ({
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g fill={color}>
+      <animated.g style={fillTransition}>
         <path d="M248 126h6v54h-6z" />
         <path d="M245 127h13v53h-13zM265 127h6v53h-6z" />
         <path d="M238 128h23v52h-23zM263 128h9v52h-9zM275 128h4v52h-4z" />
@@ -209,17 +228,21 @@ export const CloudRightSVG = ({
         <path d="M163 175h157v5H163z" />
         <path d="M162 176h158v4H162z" />
         <path d="M159 179h161v1H159z" />
-      </g>
+      </animated.g>
     </svg>
   );
 };
 
 export const BackgroundSVG = ({
-  color = "#dfeded",
+  color,
   className,
   height = 180,
   width = 320,
 }: SVGProps) => {
+  const theme = useTheme();
+  const fillTransition = useSpring({
+    fill: color || theme.palette.background.layers.mainBg,
+  });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -231,17 +254,21 @@ export const BackgroundSVG = ({
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <path fill={color} d="M0 0h320v180H0z" />
+      <animated.path style={fillTransition} d="M0 0h320v180H0z" />
     </svg>
   );
 };
 
 export const StarsSVG = ({
-  color = "#ffffff",
+  color,
   className,
   height = 180,
   width = 320,
 }: SVGProps) => {
+  const theme = useTheme();
+  const fillTransition = useSpring({
+    fill: color || theme.palette.background.layers.stars,
+  });
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -253,9 +280,9 @@ export const StarsSVG = ({
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid slice"
     >
-      <g fill={color}>
+      <animated.g style={fillTransition}>
         <path d="M11 6h1v1h-1zM126 11h1v1h-1zM56 14h1v1h-1zM172 14h1v1h-1zM291 17h1v1h-1zM226 24h1v1h-1zM316 27h1v1h-1zM259 28h1v1h-1zM5 35h1v1H5zM66 35h1v1h-1zM122 36h1v1h-1zM28 38h1v1h-1zM296 44h1v1h-1zM145 54h1v1h-1zM15 55h1v1h-1zM253 57h1v1h-1zM191 58h1v1h-1zM58 66h1v1h-1zM286 67h1v1h-1zM219 72h1v1h-1zM103 73h1v1h-1zM306 73h1v1h-1zM19 83h1v1h-1zM157 96h1v1h-1zM272 97h1v1h-1z" />
-      </g>
+      </animated.g>
     </svg>
   );
 };
