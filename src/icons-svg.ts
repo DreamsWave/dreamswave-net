@@ -15,6 +15,7 @@ export type IconNames =
   | "moon"
   | "alian"
   | "pixel-size"
+  | "pixel-size-small"
   | "lang-en"
   | "lang-ru"
   | "copyright";
@@ -133,6 +134,11 @@ const icons: Icons = {
   "pixel-size": {
     paths: ["M5 0h3v3H5zM2 1h2v2H2zM0 2h1v1H0z"],
     width: 8,
+    height: 3,
+  },
+  "pixel-size-small": {
+    paths: ["M4 0h1v3H4zM2 1h1v2H2zM0 2h1v1H0z"],
+    width: 5,
     height: 3,
   },
   "lang-en": {

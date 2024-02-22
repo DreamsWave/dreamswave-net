@@ -11,8 +11,8 @@ const primaryPalette: Palette = {
     lightest: "#d7e8ea",
     light: "#94b5bc",
     main: "#6e96a6",
-    dark: "#445a73",
-    darkest: "#445a73",
+    dark: "#6392a9",
+    darkest: "#4f758f",
   },
 };
 
@@ -86,6 +86,7 @@ const theme: Theme = {
       fontSize: "1.8rem",
       lineHeight: 1.167,
       letterSpacing: "0",
+      color: primaryPalette.text.darkest,
     },
     h2: {
       fontFamily: `"Montserrat Variable", sans-serif`,
@@ -93,6 +94,15 @@ const theme: Theme = {
       fontSize: "1.2rem",
       lineHeight: 1.2,
       letterSpacing: "0",
+      color: primaryPalette.text.dark,
+    },
+    h3: {
+      fontFamily: `"Montserrat Variable", sans-serif`,
+      fontWeight: 400,
+      fontSize: "1.2rem",
+      lineHeight: 1.2,
+      letterSpacing: "0",
+      color: primaryPalette.text.main,
     },
     subtitle1: {
       fontFamily: `"Montserrat Variable", sans-serif`,
@@ -114,6 +124,7 @@ const theme: Theme = {
       fontSize: "1rem",
       lineHeight: 1.5,
       letterSpacing: "0",
+      color: primaryPalette.text.light,
     },
     body2: {
       fontFamily: `"Montserrat Variable", sans-serif`,

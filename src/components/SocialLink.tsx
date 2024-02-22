@@ -4,9 +4,9 @@ import SVGIcon from "./SVGIcon";
 import { IconNames } from "../icons-svg";
 import { useState } from "react";
 
-const SocialLinkWrapper = styled.a(({ theme }) => ({
+const SocialLinkRoot = styled.a(({ theme }) => ({
   ...theme.typography.h2,
-  color: theme.palette.text.dark,
+  // color: theme.palette.text.dark,
   display: "inline-flex",
   width: "100%",
   justifyContent: "start",
@@ -46,14 +46,15 @@ const TextContainer = styled.div({
   position: "relative",
 });
 
-const Text = styled.p({
+const SocialLinkTitle = styled.h3(({ theme }) => ({
+  ...theme.typography.h3,
   margin: 0,
-});
+}));
 
-const SecondaryText = styled.p(({ theme }) => ({
+const SocialLinkDescription = styled.p(({ theme }) => ({
   ...theme.typography.body1,
   margin: 0,
-  color: theme.palette.text.main,
+  // color: theme.palette.text.main,
   display: "inline-flex",
   alignItems: "center",
   transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
@@ -90,7 +91,7 @@ function SocialLink({
   };
 
   return (
-    <SocialLinkWrapper
+    <SocialLinkRoot
       href={href}
       aria-label={ariaLabel}
       target="_blank"
@@ -102,20 +103,20 @@ function SocialLink({
       <StyledPixelCard bordersFocus={isFocused} bordersHover={isHovered}>
         <StyledSVGIcon iconName={icon} />
         <TextContainer>
-          <Text>{text}</Text>
+          <SocialLinkTitle>{text}</SocialLinkTitle>
           {secondaryText && (
-            <SecondaryText onClick={(e) => handleSecondaryTextClick(e)}>
+            <SocialLinkDescription onClick={(e) => handleSecondaryTextClick(e)}>
               {secondaryText}
               <StyledCopySmallSVGIcon
                 iconName="copy-small"
                 size="smallest"
                 fill={theme.palette.primary.main}
               />
-            </SecondaryText>
+            </SocialLinkDescription>
           )}
         </TextContainer>
       </StyledPixelCard>
-    </SocialLinkWrapper>
+    </SocialLinkRoot>
   );
 }
 

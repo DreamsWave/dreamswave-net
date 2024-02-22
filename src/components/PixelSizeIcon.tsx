@@ -19,7 +19,8 @@ function PixelSizeIcon({
   const { availablePixelSizes, pixelSize } = useAppSelector(selectPixelSize);
   const theme = useTheme();
 
-  const paths = ["M0 2h1v1H0z", "M2 1h2v2H2z", "M5 0h3v3H5z"];
+  const paths = ["M0 2h1v1H0z", "M2 1h1v2H2z", "M4 0h1v3H4z"];
+  // const paths = ["M0 2h1v1H0z", "M2 1h2v2H2z", "M5 0h3v3H5z"];
 
   const springs = useSprings(
     paths.length,
@@ -38,7 +39,7 @@ function PixelSizeIcon({
       height={theme.spacing(theme.iconSizeFactor[size])}
       baseProfile="tiny"
       version="1.2"
-      viewBox={`0 0 8 3`}
+      viewBox={`0 0 5 3`}
       className={className}
     >
       {springs.map((spring, index) => (

@@ -114,6 +114,7 @@ export type Theme = {
       fontSize: string;
       lineHeight: number;
       letterSpacing: string;
+      color: string;
     };
     h2: {
       fontFamily: string;
@@ -121,6 +122,15 @@ export type Theme = {
       fontSize: string;
       lineHeight: number;
       letterSpacing: string;
+      color: string;
+    };
+    h3: {
+      fontFamily: string;
+      fontWeight: number;
+      fontSize: string;
+      lineHeight: number;
+      letterSpacing: string;
+      color: string;
     };
     subtitle1: {
       fontFamily: string;
@@ -142,6 +152,7 @@ export type Theme = {
       fontSize: string;
       lineHeight: number;
       letterSpacing: string;
+      color: string;
     };
     body2: {
       fontFamily: string;
