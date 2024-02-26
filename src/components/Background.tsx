@@ -1,15 +1,15 @@
 import { useSpring, animated, config } from "@react-spring/web";
 import styled, { useTheme } from "styled-components";
 import {
-  BackgroundSVG,
   CloudBackSVG,
   CloudLeftSVG,
   CloudMiddleSVG,
   CloudRightSVG,
-  StarsSVG,
+  BackgroundSVG,
 } from "./SVGBackground";
 import { Theme } from "../types";
 import { useEffect } from "react";
+import Stars from "./Stars";
 
 const BackgroundRoot = styled(animated.div)<{ $backgroundColor: string }>`
   --background-color: ${({ $backgroundColor }) => $backgroundColor};
@@ -89,7 +89,7 @@ function Background({ mouseX, mouseY }: BackgroundProps) {
         <BackgroundSVG />
       </Layer>
       <Layer>
-        <StarsSVG />
+        <Stars />
       </Layer>
       <Layer style={{ x: transX4, y: transY4 }}>
         <CloudBackSVG />
