@@ -159,7 +159,7 @@ const theme: Theme = {
     background: 10,
     mainContent: 20,
     pixelCardBorder: 25,
-    pixelCardContent: 24,
+    pixelCardContent: 25,
     appBar: 50,
     footer: 20,
   },

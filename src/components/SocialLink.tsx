@@ -6,7 +6,6 @@ import { useState } from "react";
 
 const SocialLinkRoot = styled.a(({ theme }) => ({
   ...theme.typography.h2,
-  // color: theme.palette.text.dark,
   display: "inline-flex",
   width: "100%",
   justifyContent: "start",
@@ -54,7 +53,6 @@ const SocialLinkTitle = styled.h3(({ theme }) => ({
 const SocialLinkDescription = styled.p(({ theme }) => ({
   ...theme.typography.body1,
   margin: 0,
-  // color: theme.palette.text.main,
   display: "inline-flex",
   alignItems: "center",
   transition: `color ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeInOut}`,
