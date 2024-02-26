@@ -1,6 +1,9 @@
 import { animated, useSpring } from "@react-spring/web";
 import styled, { useTheme } from "styled-components";
-import AvatarImage from "../assets/images/avatar.png";
+import AvatarLightImage from "../assets/images/avatar/avatar-light.png";
+import AvatarDarkImage from "../assets/images/avatar/avatar-dark.png";
+import { useAppSelector } from "../hooks";
+import { selectTheme } from "../features/theme/themeSlice";
 
 const AvatarRoot = styled.div<{ $size: string }>(({ theme, $size }) => ({
   height: $size,
@@ -39,6 +42,7 @@ interface AvatarProps {
 }
 
 function Avatar({ size = "main", className }: AvatarProps) {
+  const { themeType } = useAppSelector(selectTheme);
   const theme = useTheme();
   const dimensions = size === "main" ? 20 : 30;
   const avatarBackgroundTransition = useSpring({
@@ -55,7 +59,10 @@ function Avatar({ size = "main", className }: AvatarProps) {
 
   return (
     <AvatarRoot $size={theme.spacing(dimensions)} className={className}>
-      <AvatarImg src={AvatarImage} style={avatarBackgroundTransition} />
+      <AvatarImg
+        src={themeType === "light" ? AvatarLightImage : AvatarDarkImage}
+        style={avatarBackgroundTransition}
+      />
       <AvatarBorder
         xmlns="http://www.w3.org/2000/svg"
         width={theme.spacing(dimensions)}

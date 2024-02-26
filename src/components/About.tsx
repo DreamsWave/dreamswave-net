@@ -56,7 +56,6 @@ const AboutNames = styled.div`
 
 const AboutName = styled.h1(({ theme }) => ({
   ...theme.typography.h1,
-  // color: theme.palette.text.darkest,
   margin: 0,
   marginBottom: theme.spacing(1),
   textWrap: `nowrap`,
@@ -65,14 +64,12 @@ const AboutName = styled.h1(({ theme }) => ({
 
 const AboutNickname = styled.h2(({ theme }) => ({
   ...theme.typography.h2,
-  // color: theme.palette.text.main,
   margin: 0,
   transition: `color ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut}`,
 }));
 
 const AboutDescriptionList = styled.ul(({ theme }) => ({
   ...theme.typography.body1,
-  // color: theme.palette.text.light,
   margin: 0,
   listStyle: `none`,
   padding: 0,
