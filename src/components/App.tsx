@@ -14,7 +14,7 @@ import AppBar from "./AppBar";
 import Footer from "./Footer";
 import Head from "./Head";
 
-ReactGA.initialize(import.meta.env.GA_ID);
+ReactGA.initialize(import.meta.env.VITE_GA_ID);
 
 const AppWrapper = styled.div(() => ({
   minHeight: `100vh`,
