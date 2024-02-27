@@ -7,6 +7,11 @@ try {
   const storedLanguage = localStorage.getItem("language");
   if (storedLanguage) {
     languageFromLocalStorage = storedLanguage as LanguageType;
+  } else {
+    const browserLanguage = navigator.language.split("-")[0];
+    languageFromLocalStorage = ["en", "ru"].includes(browserLanguage)
+      ? (browserLanguage as LanguageType)
+      : "en";
   }
 } catch (error) {
   console.error("Failed to access localStorage:", error);

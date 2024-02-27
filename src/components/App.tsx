@@ -1,8 +1,10 @@
 import "../App.css";
 import { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
+import { HelmetProvider } from "react-helmet-async";
 import styled, { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
+import ReactGA from "react-ga";
 import Background from "./Background";
 import Socials from "./Socials";
 import { selectTheme } from "../features/theme/themeSlice";
@@ -10,6 +12,9 @@ import { createTheme } from "../themes";
 import { selectPixelSize } from "../features/pixelSize/pixelSizeSlice";
 import AppBar from "./AppBar";
 import Footer from "./Footer";
+import Head from "./Head";
+
+ReactGA.initialize(import.meta.env.GA_ID);
 
 const AppWrapper = styled.div(() => ({
   minHeight: `100vh`,
@@ -50,14 +55,17 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppWrapper ref={ref} onMouseMove={updateMouse}>
-        <AppBar />
-        <Content>
-          <Socials />
-        </Content>
-        <Footer />
-        <Background mouseX={mouseX} mouseY={mouseY} />
-      </AppWrapper>
+      <HelmetProvider>
+        <Head />
+        <AppWrapper ref={ref} onMouseMove={updateMouse}>
+          <AppBar />
+          <Content>
+            <Socials />
+          </Content>
+          <Footer />
+          <Background mouseX={mouseX} mouseY={mouseY} />
+        </AppWrapper>
+      </HelmetProvider>
     </ThemeProvider>
   );
 }

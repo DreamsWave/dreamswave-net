@@ -58,7 +58,7 @@ const Stars = ({ count = 30 }: StarsProps) => {
           x: Math.round(Math.random() * window.innerWidth),
           y: Math.round(Math.random() * window.innerHeight),
           opacity: Math.random(),
-          size: i < count / 6 ? pixelSize * 2 : pixelSize,
+          size: i < count / 5 ? pixelSize * 2 : pixelSize,
         });
       }
       setStars(newStars);
