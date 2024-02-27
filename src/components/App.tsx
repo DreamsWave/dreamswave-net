@@ -4,6 +4,7 @@ import useMeasure from "react-use-measure";
 import { HelmetProvider } from "react-helmet-async";
 import styled, { ThemeProvider } from "styled-components";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import ReactGA from "react-ga";
 import Background from "./Background";
 import Socials from "./Socials";
@@ -33,6 +34,7 @@ function App() {
   const [ref, bounds] = useMeasure();
   const [mouseX, setMouseX] = useState(0);
   const [mouseY, setMouseY] = useState(0);
+  const location = useLocation();
   const { themeType } = useSelector(selectTheme);
   const { pixelSize } = useSelector(selectPixelSize);
   const theme = createTheme(themeType, pixelSize);
@@ -48,6 +50,10 @@ function App() {
       }
     }
   };
+
+  useEffect(() => {
+    ReactGA.pageview(location.pathname + location.search);
+  }, [location]);
 
   useEffect(() => {
     document.documentElement.style.fontSize = `${pixelSize * 4}px`;
